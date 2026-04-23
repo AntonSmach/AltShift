@@ -1,4 +1,4 @@
-import {type ReactNode, FC, memo} from 'react';
+import {FC, memo, type ReactNode} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import {Check, Home} from 'lucide-react';
 import {useApplications} from '@hooks/useApplications';
@@ -10,7 +10,9 @@ interface AppLayoutProps {
 }
 
 const Logo: FC = () => (
-    <Link to='/applications' className='flex items-center gap-2.5 no-underline rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green'>
+    <Link
+        to='/applications'
+        className='flex items-center gap-2.5 no-underline rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green'>
         <AltShiftLogo size={36} />
         <span className='font-display text-xl font-bold text-ink'>Alt+Shift</span>
     </Link>

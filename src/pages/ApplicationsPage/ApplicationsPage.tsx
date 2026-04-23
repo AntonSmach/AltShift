@@ -36,7 +36,9 @@ const ApplicationsPage: FC = () => {
                             <ApplicationCard key={app.id} application={app} onDelete={deleteApplication} />
                         ))}
                     </div>
-                    {!goalReached && <GoalBanner current={applications.length} total={goal} onCreateNew={handleCreateNew} />}
+                    {!goalReached && (
+                        <GoalBanner current={applications.length} total={goal} onCreateNew={handleCreateNew} />
+                    )}
                 </div>
             )}
         </div>

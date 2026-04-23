@@ -1,4 +1,4 @@
-import {type ReactNode, createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer} from 'react';
+import {createContext, FC, type ReactNode, useCallback, useContext, useEffect, useMemo, useReducer} from 'react';
 import type {Application} from '@models/interfaces/application.interface';
 
 const STORAGE_KEY = 'alt-shift-applications';
@@ -8,9 +8,7 @@ interface State {
     applications: Application[];
 }
 
-type Action =
-    | {type: 'ADD'; payload: Application}
-    | {type: 'DELETE'; payload: {id: string}};
+type Action = {type: 'ADD'; payload: Application} | {type: 'DELETE'; payload: {id: string}};
 
 function reducer(state: State, action: Action): State {
     switch (action.type) {

@@ -1,5 +1,5 @@
 import {FC, memo} from 'react';
-import {Trash2, Copy, Check} from 'lucide-react';
+import {Check, Copy, Trash2} from 'lucide-react';
 import type {Application} from '@models/interfaces/application.interface';
 import {useClipboard} from '@hooks/useClipboard';
 import {extractLetterBody, extractLetterGreeting} from '@utils/letter';
@@ -15,7 +15,9 @@ const ApplicationCard: FC<ApplicationCardProps> = memo(({application, onDelete})
     return (
         <div className='flex flex-col gap-3 rounded-2xl border border-surface-border bg-white p-4'>
             <div className='flex-1 overflow-hidden'>
-                <p className='mb-2 font-text text-sm font-semibold text-ink'>{extractLetterGreeting(application.generatedLetter)}</p>
+                <p className='mb-2 font-text text-sm font-semibold text-ink'>
+                    {extractLetterGreeting(application.generatedLetter)}
+                </p>
                 <p className='font-text text-sm text-ink-secondary line-clamp-4'>
                     {extractLetterBody(application.generatedLetter)}
                 </p>

@@ -1,5 +1,5 @@
 import {type ChangeEvent, FC, useCallback, useEffect, useRef, useState} from 'react';
-import {RefreshCw, Copy, Check} from 'lucide-react';
+import {Check, Copy, RefreshCw} from 'lucide-react';
 import {cn} from '@utils/cn';
 import {FormInput} from '@components/FormInput';
 import {FormTextarea} from '@components/FormTextarea';
@@ -49,14 +49,11 @@ const GeneratorPage: FC = () => {
     const isGenerating = state === GeneratorState.GENERATING;
 
     const pageTitle =
-        form.jobTitle || form.company
-            ? [form.jobTitle, form.company].filter(Boolean).join(', ')
-            : 'New application';
+        form.jobTitle || form.company ? [form.jobTitle, form.company].filter(Boolean).join(', ') : 'New application';
 
     const handleFieldChange = useCallback(
-        (field: keyof FormValues) =>
-            (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-                setForm((prev) => ({...prev, [field]: e.target.value})),
+        (field: keyof FormValues) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+            setForm((prev) => ({...prev, [field]: e.target.value})),
         [],
     );
 
@@ -169,9 +166,7 @@ const GeneratorPage: FC = () => {
                         disabled={!isCompleted}
                         className={cn(
                             'self-end inline-flex items-center gap-1.5 font-text text-sm transition-colors duration-150 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green',
-                            isCompleted
-                                ? 'text-ink-secondary hover:text-ink'
-                                : 'cursor-not-allowed text-ink-tertiary',
+                            isCompleted ? 'text-ink-secondary hover:text-ink' : 'cursor-not-allowed text-ink-tertiary',
                         )}>
                         {copied ? <Check size={14} className='text-brand-green' /> : <Copy size={14} />}
                         {copied ? 'Copied!' : 'Copy to clipboard'}
