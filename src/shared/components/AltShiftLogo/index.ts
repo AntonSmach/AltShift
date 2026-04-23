@@ -1,0 +1,1 @@
+export {AltShiftLogo} from './AltShiftLogo';
