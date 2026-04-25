@@ -1,0 +1,39 @@
+@font-face {
+    font-family: "alt-shift";
+    src: url("./alt-shift.ttf?cabbace4b191660fbdec031abe799d6e") format("truetype"),
+url("./alt-shift.woff?cabbace4b191660fbdec031abe799d6e") format("woff"),
+url("./alt-shift.woff2?cabbace4b191660fbdec031abe799d6e") format("woff2");
+}
+
+i:before {
+    font-family: alt-shift !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+i.icon-trash:before {
+    content: "\f101";
+}
+i.icon-spinner:before {
+    content: "\f102";
+}
+i.icon-refresh:before {
+    content: "\f103";
+}
+i.icon-plus:before {
+    content: "\f104";
+}
+i.icon-home:before {
+    content: "\f105";
+}
+i.icon-copy:before {
+    content: "\f106";
+}
+i.icon-check:before {
+    content: "\f107";
+}

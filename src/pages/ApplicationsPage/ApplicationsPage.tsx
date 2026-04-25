@@ -1,10 +1,9 @@
 import {FC, useCallback} from 'react';
-import {Plus} from 'lucide-react';
 import {useNavigate} from 'react-router-dom';
 import {ApplicationCard} from '@components/ApplicationCard';
 import {GoalBanner} from '@components/GoalBanner';
 import {Button} from '@components/Button';
-import {useApplications} from '@hooks/useApplications';
+import {useApplications} from '@context/applications/useApplications';
 
 const ApplicationsPage: FC = () => {
     const {applications, deleteApplication, goalReached, goal} = useApplications();
@@ -17,7 +16,7 @@ const ApplicationsPage: FC = () => {
             <div className='mb-6 flex items-center justify-between'>
                 <h1 className='font-display text-3xl font-bold text-ink md:text-4xl'>Applications</h1>
                 <Button onClick={handleCreateNew} className='gap-1.5'>
-                    <Plus size={16} />
+                    <i className='icon-plus text-base' />
                     <span className='hidden sm:inline'>Create New</span>
                     <span className='sm:hidden'>New</span>
                 </Button>

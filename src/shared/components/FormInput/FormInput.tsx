@@ -1,12 +1,12 @@
 import {forwardRef, InputHTMLAttributes} from 'react';
 import {cn} from '@utils/cn';
 
-export interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
     label: string;
     wrapperClassName?: string;
 }
 
-const FormInput = forwardRef<HTMLInputElement, FormInputProps>(({label, wrapperClassName, id, ...props}, ref) => {
+const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(({label, wrapperClassName, id, ...props}, ref) => {
     const inputId = id || label.toLowerCase().replace(/\s+/g, '-');
 
     return (

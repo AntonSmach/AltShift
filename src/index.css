@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+i[class^='icon-'],
+i[class*=' icon-'] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @font-face {
     font-family: 'FixelDisplay';
     src: url('./assets/fonts/fixel/FixelDisplay-Regular.woff2') format('woff2');

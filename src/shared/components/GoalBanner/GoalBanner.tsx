@@ -1,15 +1,14 @@
 import {FC, memo} from 'react';
-import {Plus} from 'lucide-react';
 import {ProgressDots} from '@components/ProgressDots';
 import {Button} from '@components/Button';
 
-interface GoalBannerProps {
+interface IGoalBannerProps {
     current: number;
     total: number;
     onCreateNew: () => void;
 }
 
-const GoalBanner: FC<GoalBannerProps> = memo(({current, total, onCreateNew}) => (
+const GoalBanner: FC<IGoalBannerProps> = memo(({current, total, onCreateNew}) => (
     <div className='flex flex-col items-center gap-4 rounded-2xl bg-brand-green-light px-6 py-8 text-center'>
         <div>
             <h2 className='font-display text-2xl font-bold text-ink'>Hit your goal</h2>
@@ -18,7 +17,7 @@ const GoalBanner: FC<GoalBannerProps> = memo(({current, total, onCreateNew}) => 
             </p>
         </div>
         <Button onClick={onCreateNew} className='gap-1.5'>
-            <Plus size={16} />
+            <i className='icon-plus text-base' />
             Create New
         </Button>
         <div className='flex flex-col items-center gap-1.5'>

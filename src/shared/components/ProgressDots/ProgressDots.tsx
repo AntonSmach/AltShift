@@ -1,13 +1,13 @@
 import {FC} from 'react';
 import {cn} from '@utils/cn';
 
-interface ProgressDotsProps {
+interface IProgressDotsProps {
     current: number;
     total: number;
     className?: string;
 }
 
-const ProgressDots: FC<ProgressDotsProps> = ({current, total, className}) => (
+export const ProgressDots: FC<IProgressDotsProps> = ({current, total, className}) => (
     <div className={cn('flex items-center gap-1.5', className)}>
         {Array.from({length: total}, (_, i) => (
             <span
@@ -20,7 +20,3 @@ const ProgressDots: FC<ProgressDotsProps> = ({current, total, className}) => (
         ))}
     </div>
 );
-
-ProgressDots.displayName = 'ProgressDots';
-
-export {ProgressDots};

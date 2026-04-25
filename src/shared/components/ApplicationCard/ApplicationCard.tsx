@@ -1,15 +1,14 @@
 import {FC, memo} from 'react';
-import {Check, Copy, Trash2} from 'lucide-react';
-import type {Application} from '@models/interfaces/application.interface';
+import type {IApplication} from '@models/interfaces/application.interface';
 import {useClipboard} from '@hooks/useClipboard';
 import {extractLetterBody, extractLetterGreeting} from '@utils/letter';
 
-interface ApplicationCardProps {
-    application: Application;
+interface IApplicationCardProps {
+    application: IApplication;
     onDelete: (id: string) => void;
 }
 
-const ApplicationCard: FC<ApplicationCardProps> = memo(({application, onDelete}) => {
+const ApplicationCard: FC<IApplicationCardProps> = memo(({application, onDelete}) => {
     const {copy, copied} = useClipboard();
 
     return (
@@ -27,14 +26,14 @@ const ApplicationCard: FC<ApplicationCardProps> = memo(({application, onDelete})
                     type='button'
                     onClick={() => onDelete(application.id)}
                     className='inline-flex items-center gap-1.5 font-text text-sm text-ink-tertiary hover:text-red-500 transition-colors duration-150 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green'>
-                    <Trash2 size={14} />
+                    <i className='icon-trash text-sm' />
                     Delete
                 </button>
                 <button
                     type='button'
                     onClick={() => copy(application.generatedLetter)}
                     className='inline-flex items-center gap-1.5 font-text text-sm text-ink-secondary hover:text-ink transition-colors duration-150 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green'>
-                    {copied ? <Check size={14} className='text-brand-green' /> : <Copy size={14} />}
+                    {copied ? <i className='icon-check text-sm text-brand-green' /> : <i className='icon-copy text-sm' />}
                     {copied ? 'Copied!' : 'Copy to clipboard'}
                 </button>
             </div>

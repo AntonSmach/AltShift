@@ -1,14 +1,14 @@
 import {forwardRef, TextareaHTMLAttributes} from 'react';
 import {cn} from '@utils/cn';
 
-export interface FormTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface IFormTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label: string;
     maxChars?: number;
     currentLength?: number;
     wrapperClassName?: string;
 }
 
-const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(
+const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
     ({label, maxChars, currentLength = 0, wrapperClassName, id, ...props}, ref) => {
         const inputId = id || label.toLowerCase().replace(/\s+/g, '-');
         const isOverLimit = maxChars !== undefined && currentLength > maxChars;

@@ -2,15 +2,15 @@ import {ButtonHTMLAttributes, forwardRef} from 'react';
 import {Spinner} from '@components/Spinner';
 import {cn} from '@utils/cn';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type IButtonVariant = 'primary' | 'secondary' | 'ghost';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: ButtonVariant;
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: IButtonVariant;
     loading?: boolean;
     fullWidth?: boolean;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     ({variant = 'primary', loading = false, fullWidth = false, className, children, disabled, ...props}, ref) => {
         const isDisabled = disabled || loading;
 
