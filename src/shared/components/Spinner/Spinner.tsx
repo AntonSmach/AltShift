@@ -10,6 +10,4 @@ const Spinner: FC<ISpinnerProps> = ({className, size = 20}) => (
     <i className={cn('icon-spinner animate-spin', className)} style={{fontSize: size}} />
 );
 
-Spinner.displayName = 'Spinner';
-
 export default Spinner;

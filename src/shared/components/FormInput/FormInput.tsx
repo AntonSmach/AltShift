@@ -1,34 +1,46 @@
-import {forwardRef, InputHTMLAttributes} from 'react';
+import {forwardRef, InputHTMLAttributes, useId} from 'react';
 import {cn} from '@utils/cn';
 
 export interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
     label: string;
-    wrapperClassName?: string;
+    hasError?: boolean;
+    errorMessage?: string;
 }
 
-const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(({label, wrapperClassName, id, ...props}, ref) => {
-    const inputId = id || label.toLowerCase().replace(/\s+/g, '-');
+const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
+    ({label, hasError, errorMessage, id, ...props}, ref) => {
+        const generatedId = useId();
+        const inputId = id || generatedId;
 
-    return (
-        <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
-            <label htmlFor={inputId} className='font-text text-sm font-medium text-ink'>
-                {label}
-            </label>
-            <input
-                ref={ref}
-                id={inputId}
-                className={cn(
-                    'h-11 w-full rounded-xl border border-surface-border bg-white px-4',
-                    'font-text text-base text-ink placeholder:text-ink-tertiary',
-                    'outline-none transition-colors duration-150',
-                    'focus:border-brand-green',
-                    'disabled:cursor-not-allowed disabled:bg-surface-secondary disabled:text-ink-tertiary',
-                )}
-                {...props}
-            />
-        </div>
-    );
-});
+        return (
+            <div className='flex flex-col gap-1.5'>
+                <label htmlFor={inputId} className='font-text text-sm font-medium text-ink'>
+                    {label}
+                    {props.required && <b className='ml-0.5 text-red-500'>*</b>}
+                </label>
+                <input
+                    ref={ref}
+                    id={inputId}
+                    className={cn(
+                        'h-11 w-full rounded-xl border bg-white px-4',
+                        'font-text text-base text-ink placeholder:text-ink-tertiary',
+                        'outline-none transition-colors duration-150',
+                        'disabled:cursor-not-allowed disabled:bg-surface-secondary disabled:text-ink-tertiary',
+                        hasError
+                            ? 'border-red-400 focus:border-red-400'
+                            : 'border-surface-border focus:border-brand-green',
+                    )}
+                    {...props}
+                />
+                <div className='min-h-[1.25rem]'>
+                    {hasError && errorMessage && (
+                        <span className='font-text text-sm text-red-500'>{errorMessage}</span>
+                    )}
+                </div>
+            </div>
+        );
+    },
+);
 FormInput.displayName = 'FormInput';
 
 export {FormInput};

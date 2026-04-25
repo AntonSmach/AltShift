@@ -1,22 +1,24 @@
-import {forwardRef, TextareaHTMLAttributes} from 'react';
+import {forwardRef, TextareaHTMLAttributes, useId} from 'react';
 import {cn} from '@utils/cn';
 
 export interface IFormTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label: string;
+    hasError?: boolean;
+    errorMessage?: string;
     maxChars?: number;
     currentLength?: number;
-    wrapperClassName?: string;
 }
 
 const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
-    ({label, maxChars, currentLength = 0, wrapperClassName, id, ...props}, ref) => {
-        const inputId = id || label.toLowerCase().replace(/\s+/g, '-');
-        const isOverLimit = maxChars !== undefined && currentLength > maxChars;
+    ({label, hasError, errorMessage, maxChars, currentLength = 0, id, ...props}, ref) => {
+        const generatedId = useId();
+        const inputId = id || generatedId;
 
         return (
-            <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
+            <div className='flex flex-col gap-1.5'>
                 <label htmlFor={inputId} className='font-text text-sm font-medium text-ink'>
                     {label}
+                    {props.required && <b className='ml-0.5 text-red-500'>*</b>}
                 </label>
                 <textarea
                     ref={ref}
@@ -25,22 +27,23 @@ const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
                         'w-full rounded-xl border bg-white px-4 py-3',
                         'font-text text-base text-ink placeholder:text-ink-tertiary',
                         'outline-none transition-colors duration-150 resize-none',
-                        {
-                            'border-red-400 focus:border-red-400': isOverLimit,
-                            'border-surface-border focus:border-brand-green': !isOverLimit,
-                        },
+                        'disabled:cursor-not-allowed disabled:bg-surface-secondary disabled:text-ink-tertiary',
+                        hasError
+                            ? 'border-red-400 focus:border-red-400'
+                            : 'border-surface-border focus:border-brand-green',
                     )}
                     {...props}
                 />
-                {maxChars !== undefined && (
-                    <span
-                        className={cn('font-text text-sm self-start', {
-                            'text-red-500': isOverLimit,
-                            'text-ink-tertiary': !isOverLimit,
-                        })}>
-                        {currentLength}/{maxChars}
+                <div className='flex items-start justify-between min-h-[1.25rem]'>
+                    {maxChars !== undefined && (
+                        <span className={cn('font-text text-sm', hasError ? 'text-red-500' : 'text-ink-tertiary')}>
+                            {currentLength}/{maxChars}
+                        </span>
+                    )}
+                    <span className='font-text text-sm text-red-500'>
+                        {hasError && errorMessage ? errorMessage : ''}
                     </span>
-                )}
+                </div>
             </div>
         );
     },
