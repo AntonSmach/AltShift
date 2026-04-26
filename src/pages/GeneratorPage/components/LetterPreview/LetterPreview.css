@@ -6,10 +6,24 @@
     }
 
     .letter-preview-content {
-        @apply flex-1;
+        @apply flex flex-1 flex-col;
     }
 
     .letter-preview-footer {
         @apply flex justify-end pt-4;
+    }
+
+    .letter-preview-copy-btn {
+        @apply text-base font-semibold leading-6 text-fg-tertiary;
+        &:hover {
+            @apply text-fg-primary;
+        }
+    }
+
+    .letter-preview-copy-btn--copied {
+        @apply text-brand;
+        &:hover {
+            @apply text-brand;
+        }
     }
 }

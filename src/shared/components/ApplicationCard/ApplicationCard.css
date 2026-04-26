@@ -1,0 +1,44 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .application-card {
+        @apply flex flex-col gap-3 rounded-2xl bg-surface p-4 h-[240px];
+    }
+
+    .application-card-preview {
+        @apply relative max-h-60 overflow-hidden;
+    }
+
+    .application-card-text {
+        @apply font-text text-body-lg font-normal text-fg-muted whitespace-pre-line;
+    }
+
+    .application-card-fade {
+        @apply absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t from-surface to-transparent;
+    }
+
+    .application-card-footer {
+        @apply flex items-center justify-between pt-3;
+    }
+
+    .application-card-delete-btn {
+        @apply text-base font-semibold leading-6 text-fg-tertiary;
+        &:hover {
+            @apply text-fg-error;
+        }
+    }
+
+    .application-card-copy-btn {
+        @apply text-base font-semibold leading-6 text-fg-tertiary;
+        &:hover {
+            @apply text-fg-primary;
+        }
+    }
+
+    .application-card-copy-btn--copied {
+        @apply text-brand;
+        &:hover {
+            @apply text-brand;
+        }
+    }
+}
