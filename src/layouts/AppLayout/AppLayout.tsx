@@ -48,7 +48,9 @@ export const AppLayout: FC<IAppLayoutProps> = memo(({children}) => {
                 </div>
             </header>
 
-            <main className='app-main'>{children}</main>
+            <main className='app-main'>
+                <div className='app-container'>{children}</div>
+            </main>
         </div>
     );
 });
