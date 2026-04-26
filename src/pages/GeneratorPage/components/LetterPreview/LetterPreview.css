@@ -1,0 +1,15 @@
+@reference "../../../../styles/theme.css";
+
+@layer components {
+    .letter-preview {
+        @apply flex flex-1 flex-col;
+    }
+
+    .letter-preview-content {
+        @apply flex-1;
+    }
+
+    .letter-preview-footer {
+        @apply flex justify-end pt-4;
+    }
+}

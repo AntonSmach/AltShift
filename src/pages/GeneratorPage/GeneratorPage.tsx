@@ -1,6 +1,5 @@
-import {FC, useEffect, useRef, useState} from 'react';
+import {FC, useCallback, useEffect, useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
-import IconButton from '@components/IconButton/IconButton';
 import FormInput from '@components/FormInput/FormInput';
 import FormTextarea from '@components/FormTextarea/FormTextarea';
 import Button from '@components/Button/Button';
@@ -12,6 +11,7 @@ import {cn} from '@utils/cn.ts';
 import {GeneratorState} from '@models/enums/generator-state.enum';
 import {GeneratorStatus} from '@pages/GeneratorPage/types/generator.types.ts';
 import {generateLetter} from '@pages/GeneratorPage/helpers/generate-letter.ts';
+import './GeneratorPage.css';
 
 const MAX_CHARS = 1200;
 
@@ -73,15 +73,23 @@ const GeneratorPage: FC = () => {
 
     const handleTryAgain = () => setStatus({phase: GeneratorState.IDLE});
 
-    return (
-        <div className='mx-auto w-full max-w-5xl px-4 py-8 md:px-8'>
-            <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
-                <div>
-                    <h1 className='mb-6 font-display text-3xl font-bold text-fg-primary md:text-4xl'>{pageTitle}</h1>
-                    <div className='mb-1 h-px w-full bg-stroke' />
+    const handleCopy = useCallback(() => {
+        if (status.phase === GeneratorState.COMPLETED) {
+            copy(status.letter);
+        }
+    }, [copy, status]);
 
-                    <form onSubmit={handleSubmit(onSubmit)} className='mt-6 flex flex-col gap-5'>
-                        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
+    return (
+        <div className='generator-page'>
+            <div className='generator-layout'>
+                <div>
+                    <h1 className={cn('generator-title', !jobTitle && !company && 'generator-title--placeholder')}>
+                        {pageTitle}
+                    </h1>
+                    <div className='generator-divider' />
+
+                    <form onSubmit={handleSubmit(onSubmit)} className='generator-form'>
+                        <div className='generator-form-row'>
                             <FormInput
                                 label='Job title'
                                 placeholder='Product manager'
@@ -139,28 +147,15 @@ const GeneratorPage: FC = () => {
                     </form>
                 </div>
 
-                <div className='flex flex-col gap-3'>
-                    <div className='flex flex-1 flex-col rounded-2xl bg-surface p-6 min-h-64'>
-                        <LetterPreview status={status} />
+                <div className='generator-preview-col'>
+                    <div className='generator-preview-box'>
+                        <LetterPreview status={status} copied={copied} isCompleted={isCompleted} onCopy={handleCopy} />
                     </div>
-                    <IconButton
-                        icon={copied ? 'icon-check' : 'icon-copy'}
-                        label={copied ? 'Copied!' : 'Copy to clipboard'}
-                        onClick={() => status.phase === GeneratorState.COMPLETED && copy(status.letter)}
-                        disabled={!isCompleted}
-                        className={cn(
-                            'self-end',
-                            isCompleted
-                                ? 'text-fg-secondary hover:text-fg-primary'
-                                : 'cursor-not-allowed text-fg-muted',
-                            copied && 'text-brand',
-                        )}
-                    />
                 </div>
             </div>
 
             {isCompleted && !goalReached && (
-                <div className='mt-8'>
+                <div className='generator-goal'>
                     <GoalBanner current={applications.length} total={goal} onCreateNew={handleTryAgain} />
                 </div>
             )}

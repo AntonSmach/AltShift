@@ -42,7 +42,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
                 ref={ref}
                 disabled={isDisabled}
                 className={cn(
-                    'inline-flex items-center justify-center rounded-xl font-text font-semibold text-base transition-colors duration-150 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand',
+                    'cursor-pointer inline-flex items-center justify-center rounded-xl font-text font-semibold text-base transition-colors duration-150 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand',
                     'h-[52px] px-6',
                     fullWidth && 'w-full',
                     loading

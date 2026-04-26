@@ -1,0 +1,43 @@
+@reference "../../styles/theme.css";
+
+@layer components {
+    .generator-page {
+        @apply mx-auto w-full max-w-5xl px-4 py-8 md:px-8;
+    }
+
+    .generator-layout {
+        @apply grid grid-cols-1 gap-8 md:grid-cols-2;
+    }
+
+    .generator-title {
+        @apply mb-6 font-display text-3xl font-semibold text-fg-primary md:text-4xl;
+    }
+
+    .generator-title--placeholder {
+        @apply text-fg-muted;
+    }
+
+    .generator-divider {
+        @apply mb-1 h-px w-full bg-stroke;
+    }
+
+    .generator-form {
+        @apply mt-6 flex flex-col gap-5;
+    }
+
+    .generator-form-row {
+        @apply grid grid-cols-1 gap-4 sm:grid-cols-2;
+    }
+
+    .generator-preview-col {
+        @apply flex flex-col gap-3;
+    }
+
+    .generator-preview-box {
+        @apply flex flex-1 flex-col rounded-2xl bg-surface p-6 min-h-64;
+    }
+
+    .generator-goal {
+        @apply mt-8;
+    }
+}
