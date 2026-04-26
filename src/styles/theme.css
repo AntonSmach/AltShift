@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+@theme {
+    /* ── Brand ───────────────────────────────────────────────────────── */
+    --color-brand: #099250;
+    --color-brand-dark: #087443;
+    --color-brand-light: #edfcf2;
+
+    /* ── Foreground (text) ───────────────────────────────────────────── */
+    --color-fg-primary: #101828; /* headings, strong labels */
+    --color-fg-secondary: #344054; /* labels, icons */
+    --color-fg-tertiary: #475467; /* body copy */
+    --color-fg-muted: #667085; /* placeholders, captions */
+    --color-fg-disabled: #98a2b3; /* disabled state */
+    --color-fg-error: #f04438; /* inline error messages */
+    /* ── Stroke (borders) ────────────────────────────────────────────── */
+    --color-stroke: #d0d5dd;
+    --color-stroke-light: #eaecf0;
+    --color-stroke-success: #73e2a3;
+    --color-stroke-error: #fda29b;
+
+    /* ── Surface (backgrounds) ───────────────────────────────────────── */
+    --color-surface: #f2f4f7;
+
+    /* ── Status ──────────────────────────────────────────────────────── */
+    --color-success: #12b76a;
+    --color-success-light: #d1fadf;
+    --color-success-lighter: #edfcf2;
+    --color-error: #f04438;
+
+    /* ── Fonts ───────────────────────────────────────────────────────── */
+    --font-display: 'FixelDisplay', system-ui, sans-serif;
+    --font-text: 'FixelText', system-ui, sans-serif;
+
+    /* ── Font sizes ──────────────────────────────────────────────────── */
+    --text-body-lg: 1.125rem;
+    --text-body-lg--line-height: 1.75rem;
+    --text-btn-lg: 1.125rem;
+    --text-btn-lg--line-height: 1.5rem;
+    --text-btn-lg-bold: 1.125rem;
+    --text-btn-lg-bold--line-height: 1.75rem;
+    --text-title: 2.25rem;
+    --text-title--line-height: 2.75rem;
+
+    /* ── Spacing ─────────────────────────────────────────────────────── */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* ── Border radius ───────────────────────────────────────────────── */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+}

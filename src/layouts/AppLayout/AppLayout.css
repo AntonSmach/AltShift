@@ -1,0 +1,37 @@
+@layer components {
+    .app-layout {
+        @apply flex min-h-screen flex-col bg-white;
+    }
+
+    .app-header {
+        @apply sticky top-0 z-10 border-b border-surface-border bg-white;
+    }
+
+    .app-header-inner {
+        @apply mx-auto flex h-16 max-w-5xl items-center justify-between px-4 md:px-8;
+    }
+
+    .app-logo-link {
+        @apply flex items-center gap-2.5 rounded-lg;
+        @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green;
+    }
+
+    .app-nav {
+        @apply flex items-center gap-2;
+    }
+
+    .app-nav-progress {
+        @apply hidden items-center gap-2 sm:flex;
+    }
+
+    .app-nav-btn {
+        @apply flex h-8 w-8 items-center justify-center rounded-lg;
+        @apply border border-surface-border text-ink-secondary;
+        @apply hover:bg-surface-secondary transition-colors duration-150;
+        @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green;
+    }
+
+    .app-main {
+        @apply flex flex-1 flex-col;
+    }
+}

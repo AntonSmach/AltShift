@@ -1,13 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-i[class^='icon-'],
-i[class*=' icon-'] {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
+@import './styles/theme.css';
 
 @font-face {
     font-family: 'FixelDisplay';
@@ -73,13 +64,18 @@ i[class*=' icon-'] {
     font-display: swap;
 }
 
-@layer base {
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
+/* ── Icon font ───────────────────────────────────────────────────────── */
 
+i[class^='icon-'],
+i[class*=' icon-'] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────── */
+
+@layer base {
     html,
     body,
     #root {
@@ -88,10 +84,10 @@ i[class*=' icon-'] {
 
     body {
         margin: 0;
-        font-family: 'FixelText', system-ui, sans-serif;
+        font-family: var(--font-text);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background-color: #ffffff;
-        color: #1b2b3a;
+        color: var(--color-fg-primary);
     }
 }
