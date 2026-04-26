@@ -14,26 +14,26 @@ const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
 
         return (
             <div className='flex flex-col gap-1.5'>
-                <label htmlFor={inputId} className='font-text text-sm font-medium text-ink'>
+                <label htmlFor={inputId} className='font-text text-sm font-medium text-fg-primary'>
                     {label}
-                    {props.required && <b className='ml-0.5 text-red-500'>*</b>}
+                    {props.required && <b className='ml-0.5 text-fg-error'>*</b>}
                 </label>
                 <input
                     ref={ref}
                     id={inputId}
                     className={cn(
                         'h-11 w-full rounded-xl border bg-white px-4',
-                        'font-text text-base text-ink placeholder:text-ink-tertiary',
+                        'font-text text-base text-fg-primary placeholder:text-fg-muted',
                         'outline-none transition-colors duration-150',
-                        'disabled:cursor-not-allowed disabled:bg-surface-secondary disabled:text-ink-tertiary',
-                        hasError
-                            ? 'border-red-400 focus:border-red-400'
-                            : 'border-surface-border focus:border-brand-green',
+                        'disabled:cursor-not-allowed disabled:bg-surface disabled:text-fg-disabled',
+                        hasError ? 'border-stroke-error focus:border-stroke-error' : 'border-stroke focus:border-brand',
                     )}
                     {...props}
                 />
                 <div className='min-h-[1.25rem]'>
-                    {hasError && errorMessage && <span className='font-text text-sm text-red-500'>{errorMessage}</span>}
+                    {hasError && errorMessage && (
+                        <span className='font-text text-sm text-fg-error'>{errorMessage}</span>
+                    )}
                 </div>
             </div>
         );

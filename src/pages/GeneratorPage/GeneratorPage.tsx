@@ -77,8 +77,8 @@ const GeneratorPage: FC = () => {
         <div className='mx-auto w-full max-w-5xl px-4 py-8 md:px-8'>
             <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
                 <div>
-                    <h1 className='mb-6 font-display text-3xl font-bold text-ink md:text-4xl'>{pageTitle}</h1>
-                    <div className='mb-1 h-px w-full bg-surface-border' />
+                    <h1 className='mb-6 font-display text-3xl font-bold text-fg-primary md:text-4xl'>{pageTitle}</h1>
+                    <div className='mb-1 h-px w-full bg-stroke' />
 
                     <form onSubmit={handleSubmit(onSubmit)} className='mt-6 flex flex-col gap-5'>
                         <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
@@ -140,7 +140,7 @@ const GeneratorPage: FC = () => {
                 </div>
 
                 <div className='flex flex-col gap-3'>
-                    <div className='flex flex-1 flex-col rounded-2xl bg-surface-secondary p-6 min-h-64'>
+                    <div className='flex flex-1 flex-col rounded-2xl bg-surface p-6 min-h-64'>
                         <LetterPreview status={status} />
                     </div>
                     <IconButton
@@ -150,8 +150,10 @@ const GeneratorPage: FC = () => {
                         disabled={!isCompleted}
                         className={cn(
                             'self-end',
-                            isCompleted ? 'text-ink-secondary hover:text-ink' : 'cursor-not-allowed text-ink-tertiary',
-                            copied && 'text-brand-green',
+                            isCompleted
+                                ? 'text-fg-secondary hover:text-fg-primary'
+                                : 'cursor-not-allowed text-fg-muted',
+                            copied && 'text-brand',
                         )}
                     />
                 </div>

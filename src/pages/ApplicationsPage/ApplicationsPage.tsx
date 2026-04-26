@@ -14,14 +14,14 @@ const ApplicationsPage: FC = () => {
     return (
         <div className='mx-auto w-full max-w-5xl px-4 py-8 md:px-8'>
             <div className='mb-6 flex items-center justify-between'>
-                <h1 className='font-display text-3xl font-bold text-ink md:text-4xl'>Applications</h1>
+                <h1 className='font-display text-3xl font-bold text-fg-primary md:text-4xl'>Applications</h1>
                 <Button icon='icon-plus' onClick={handleCreateNew} className='gap-1.5'>
                     <span className='hidden sm:inline'>Create New</span>
                     <span className='sm:hidden'>New</span>
                 </Button>
             </div>
 
-            <div className='mb-1 h-px w-full bg-surface-border' />
+            <div className='mb-1 h-px w-full bg-stroke' />
 
             {applications.length === 0 ? (
                 <div className='mt-8'>

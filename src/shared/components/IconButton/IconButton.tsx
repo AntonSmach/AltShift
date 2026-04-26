@@ -12,7 +12,7 @@ const IconButton = forwardRef<HTMLButtonElement, IIconButtonProps>(({icon, label
         type='button'
         className={cn(
             'inline-flex items-center gap-1.5 font-text text-sm transition-colors duration-150 rounded',
-            'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green',
+            'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand',
             className,
         )}
         {...props}>

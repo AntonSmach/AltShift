@@ -10,7 +10,7 @@ const ApplicationsPage = lazy(() => import('@pages/ApplicationsPage/Applications
 
 const fallback = (
     <div className='flex flex-1 items-center justify-center'>
-        <Spinner size={36} className='text-ink-tertiary' />
+        <Spinner size={36} className='text-fg-muted' />
     </div>
 );
 
