@@ -33,14 +33,13 @@ const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
                     {...props}
                 />
                 <div className='min-h-[1.25rem]'>
-                    {hasError && errorMessage && (
-                        <span className='font-text text-sm text-red-500'>{errorMessage}</span>
-                    )}
+                    {hasError && errorMessage && <span className='font-text text-sm text-red-500'>{errorMessage}</span>}
                 </div>
             </div>
         );
     },
 );
+
 FormInput.displayName = 'FormInput';
 
-export {FormInput};
+export default FormInput;

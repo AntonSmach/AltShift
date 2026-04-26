@@ -5,12 +5,11 @@ export interface IFormTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaE
     label: string;
     hasError?: boolean;
     errorMessage?: string;
-    maxChars?: number;
     currentLength?: number;
 }
 
 const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
-    ({label, hasError, errorMessage, maxChars, currentLength = 0, id, ...props}, ref) => {
+    ({label, hasError, errorMessage, currentLength = 0, id, ...props}, ref) => {
         const generatedId = useId();
         const inputId = id || generatedId;
 
@@ -35,9 +34,9 @@ const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
                     {...props}
                 />
                 <div className='flex items-start justify-between min-h-[1.25rem]'>
-                    {maxChars !== undefined && (
+                    {props.maxLength !== undefined && (
                         <span className={cn('font-text text-sm', hasError ? 'text-red-500' : 'text-ink-tertiary')}>
-                            {currentLength}/{maxChars}
+                            {currentLength}/{props.maxLength}
                         </span>
                     )}
                     <span className='font-text text-sm text-red-500'>
@@ -50,4 +49,4 @@ const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
 );
 FormTextarea.displayName = 'FormTextarea';
 
-export {FormTextarea};
+export default FormTextarea;

@@ -1,6 +1,6 @@
 import {twMerge} from 'tailwind-merge';
-import classNames from 'classnames';
+import classNames, {type ArgumentArray} from 'classnames';
 
-export function cn(...args: Parameters<typeof classNames>): string {
+export function cn(...args: ArgumentArray): string {
     return twMerge(classNames(...args));
 }

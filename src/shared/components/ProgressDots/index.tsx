@@ -7,7 +7,7 @@ interface IProgressDotsProps {
     className?: string;
 }
 
-export const ProgressDots: FC<IProgressDotsProps> = ({current, total, className}) => (
+const ProgressDots: FC<IProgressDotsProps> = ({current, total, className}) => (
     <div className={cn('flex items-center gap-1.5', className)}>
         {Array.from({length: total}, (_, i) => (
             <span
@@ -20,3 +20,5 @@ export const ProgressDots: FC<IProgressDotsProps> = ({current, total, className}
         ))}
     </div>
 );
+
+export default ProgressDots;

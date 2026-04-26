@@ -1,6 +1,6 @@
 import {FC, memo} from 'react';
-import {ProgressDots} from '@components/ProgressDots';
-import {Button} from '@components/Button';
+import ProgressDots from '@components/ProgressDots';
+import Button from '@components/Button';
 
 interface IGoalBannerProps {
     current: number;
@@ -16,8 +16,7 @@ const GoalBanner: FC<IGoalBannerProps> = memo(({current, total, onCreateNew}) =>
                 Generate and send out couple more job applications today to get hired faster
             </p>
         </div>
-        <Button onClick={onCreateNew} className='gap-1.5'>
-            <i className='icon-plus text-base' />
+        <Button icon='icon-plus' onClick={onCreateNew} className='gap-1.5'>
             Create New
         </Button>
         <div className='flex flex-col items-center gap-1.5'>
@@ -28,6 +27,7 @@ const GoalBanner: FC<IGoalBannerProps> = memo(({current, total, onCreateNew}) =>
         </div>
     </div>
 ));
+
 GoalBanner.displayName = 'GoalBanner';
 
-export {GoalBanner};
+export default GoalBanner;

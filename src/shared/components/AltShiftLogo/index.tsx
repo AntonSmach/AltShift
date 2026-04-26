@@ -6,6 +6,8 @@ interface IAltShiftLogoProps {
     className?: string;
 }
 
-export const AltShiftLogo: FC<IAltShiftLogoProps> = ({size = 32, className}) => (
+const AltShiftLogo: FC<IAltShiftLogoProps> = ({size = 32, className}) => (
     <LogoSvg aria-hidden='true' focusable='false' width={size} height={size} className={className} />
 );
+
+export default AltShiftLogo;

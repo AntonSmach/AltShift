@@ -1,15 +1,16 @@
 import {FC, useEffect, useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
-import {cn} from '@utils/cn';
-import {FormInput} from '@components/FormInput';
-import {FormTextarea} from '@components/FormTextarea';
-import {Button} from '@components/Button';
-import {GoalBanner} from '@components/GoalBanner';
-import {Spinner} from '@components/Spinner';
+import IconButton from '@components/IconButton';
+import FormInput from '@components/FormInput';
+import FormTextarea from '@components/FormTextarea';
+import Button from '@components/Button';
+import GoalBanner from '@components/GoalBanner';
+import Spinner from '@components/Spinner';
 import {useApplications} from '@context/applications/useApplications';
 import {useClipboard} from '@hooks/useClipboard';
 import {generateLetterWithDelay} from '@utils/generateLetter';
 import {GeneratorState} from '@models/enums/generator-state.enum';
+import {cn} from '@utils/cn.ts';
 
 const MAX_CHARS = 1200;
 
@@ -63,12 +64,12 @@ const GeneratorPage: FC = () => {
         addApplication({...data, generatedLetter: letter});
         setGeneratedLetter(letter);
         setGeneratorState(GeneratorState.COMPLETED);
+        reset();
     };
 
     const handleTryAgain = () => {
         setGeneratorState(GeneratorState.IDLE);
         setGeneratedLetter('');
-        reset();
     };
 
     return (
@@ -111,7 +112,7 @@ const GeneratorPage: FC = () => {
                             label='Additional details'
                             placeholder='Describe why you are a great fit or paste your bio'
                             rows={8}
-                            maxChars={MAX_CHARS}
+                            maxLength={MAX_CHARS}
                             currentLength={additionalDetails.length}
                             disabled={isGenerating}
                             hasError={!!errors.additionalDetails}
@@ -123,10 +124,10 @@ const GeneratorPage: FC = () => {
                             <Button
                                 type='button'
                                 variant='secondary'
+                                icon='icon-refresh'
                                 fullWidth
                                 onClick={handleTryAgain}
                                 className='gap-2'>
-                                <i className='icon-refresh text-base' />
                                 Try Again
                             </Button>
                         ) : (
@@ -153,21 +154,17 @@ const GeneratorPage: FC = () => {
                             </p>
                         )}
                     </div>
-                    <button
-                        type='button'
+                    <IconButton
+                        icon={copied ? 'icon-check' : 'icon-copy'}
+                        label={copied ? 'Copied!' : 'Copy to clipboard'}
                         onClick={() => copy(generatedLetter)}
                         disabled={!isCompleted}
                         className={cn(
-                            'self-end inline-flex items-center gap-1.5 font-text text-sm transition-colors duration-150 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green',
+                            'self-end',
                             isCompleted ? 'text-ink-secondary hover:text-ink' : 'cursor-not-allowed text-ink-tertiary',
-                        )}>
-                        {copied ? (
-                            <i className='icon-check text-sm text-brand-green' />
-                        ) : (
-                            <i className='icon-copy text-sm' />
+                            copied && 'text-brand-green',
                         )}
-                        {copied ? 'Copied!' : 'Copy to clipboard'}
-                    </button>
+                    />
                 </div>
             </div>
 

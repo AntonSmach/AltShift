@@ -1,8 +1,8 @@
 import {FC, useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {ApplicationCard} from '@components/ApplicationCard';
-import {GoalBanner} from '@components/GoalBanner';
-import {Button} from '@components/Button';
+import ApplicationCard from '@components/ApplicationCard';
+import GoalBanner from '@components/GoalBanner';
+import Button from '@components/Button';
 import {useApplications} from '@context/applications/useApplications';
 
 const ApplicationsPage: FC = () => {
@@ -15,8 +15,7 @@ const ApplicationsPage: FC = () => {
         <div className='mx-auto w-full max-w-5xl px-4 py-8 md:px-8'>
             <div className='mb-6 flex items-center justify-between'>
                 <h1 className='font-display text-3xl font-bold text-ink md:text-4xl'>Applications</h1>
-                <Button onClick={handleCreateNew} className='gap-1.5'>
-                    <i className='icon-plus text-base' />
+                <Button icon='icon-plus' onClick={handleCreateNew} className='gap-1.5'>
                     <span className='hidden sm:inline'>Create New</span>
                     <span className='sm:hidden'>New</span>
                 </Button>

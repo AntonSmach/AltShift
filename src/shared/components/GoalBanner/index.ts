@@ -1,1 +1,0 @@
-export {GoalBanner} from './GoalBanner';
