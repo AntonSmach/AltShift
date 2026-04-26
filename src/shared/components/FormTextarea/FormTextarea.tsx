@@ -1,5 +1,6 @@
 import {forwardRef, TextareaHTMLAttributes, useId} from 'react';
 import {cn} from '@utils/cn';
+import './FormTextarea.css';
 
 export interface IFormTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label: string;
@@ -14,32 +15,24 @@ const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
         const inputId = id || generatedId;
 
         return (
-            <div className='flex flex-col gap-1.5'>
-                <label htmlFor={inputId} className='font-text text-sm font-medium text-fg-primary'>
+            <div className='form-textarea-wrapper'>
+                <label htmlFor={inputId} className='form-textarea-label'>
                     {label}
-                    {props.required && <b className='ml-0.5 text-fg-error'>*</b>}
+                    {props.required && <b className='form-textarea-required'>*</b>}
                 </label>
                 <textarea
                     ref={ref}
                     id={inputId}
-                    className={cn(
-                        'w-full rounded-xl border bg-white px-4 py-3',
-                        'font-text text-base text-fg-primary placeholder:text-fg-muted',
-                        'outline-none transition-colors duration-150 resize-none',
-                        'disabled:cursor-not-allowed disabled:bg-surface disabled:text-fg-disabled',
-                        hasError ? 'border-stroke-error focus:border-stroke-error' : 'border-stroke focus:border-brand',
-                    )}
+                    className={cn('form-textarea', hasError && 'form-textarea--error')}
                     {...props}
                 />
-                <div className='flex items-start justify-between min-h-[1.25rem]'>
+                <div className='form-textarea-footer'>
                     {props.maxLength !== undefined && (
-                        <span className={cn('font-text text-sm', hasError ? 'text-fg-error' : 'text-fg-muted')}>
+                        <span className={cn('form-textarea-counter', hasError && 'form-textarea-counter--error')}>
                             {currentLength}/{props.maxLength}
                         </span>
                     )}
-                    <span className='font-text text-sm text-fg-error'>
-                        {hasError && errorMessage ? errorMessage : ''}
-                    </span>
+                    <span className='form-textarea-error-msg'>{hasError && errorMessage ? errorMessage : ''}</span>
                 </div>
             </div>
         );

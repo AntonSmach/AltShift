@@ -1,0 +1,53 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .form-textarea-wrapper {
+        @apply flex flex-col gap-1.5;
+    }
+
+    .form-textarea-label {
+        @apply font-text text-sm font-medium text-fg-primary;
+    }
+
+    .form-textarea-required {
+        @apply ml-0.5 text-fg-error;
+    }
+
+    .form-textarea {
+        @apply w-full rounded-xl border border-stroke bg-white px-4 py-3;
+        @apply font-text text-base text-fg-primary;
+        @apply outline-none transition-colors duration-150 resize-none;
+        &::placeholder {
+            @apply text-fg-muted;
+        }
+        &:focus {
+            @apply border-brand;
+        }
+        &:disabled {
+            @apply cursor-not-allowed bg-surface text-fg-disabled;
+        }
+    }
+
+    .form-textarea--error {
+        @apply border-stroke-error;
+        &:focus {
+            @apply border-stroke-error;
+        }
+    }
+
+    .form-textarea-footer {
+        @apply flex items-start justify-between min-h-5;
+    }
+
+    .form-textarea-counter {
+        @apply font-text text-sm text-fg-muted;
+    }
+
+    .form-textarea-counter--error {
+        @apply text-fg-error;
+    }
+
+    .form-textarea-error-msg {
+        @apply font-text text-sm text-fg-error;
+    }
+}
