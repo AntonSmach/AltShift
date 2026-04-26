@@ -1,10 +1,16 @@
+@reference "../../styles/theme.css";
+
 @layer components {
     .app-layout {
         @apply flex min-h-screen flex-col bg-white;
     }
 
+    .app-main {
+        @apply flex flex-1 flex-col;
+    }
+
     .app-header {
-        @apply sticky top-0 z-10 border-b border-surface-border bg-white;
+        @apply sticky top-0 z-10 border-stroke bg-white;
     }
 
     .app-header-inner {
@@ -13,25 +19,41 @@
 
     .app-logo-link {
         @apply flex items-center gap-2.5 rounded-lg;
-        @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green;
+        @apply focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-brand;
+    }
+
+    .app-logo-title {
+        @apply font-display text-xl font-bold text-fg-primary;
     }
 
     .app-nav {
-        @apply flex items-center gap-2;
+        @apply flex items-center gap-3;
     }
 
     .app-nav-progress {
-        @apply hidden items-center gap-2 sm:flex;
+        @apply hidden items-center gap-3 sm:flex;
+    }
+
+    .app-progress-text {
+        @apply font-text text-body-lg text-fg-muted;
+    }
+
+    .app-goal-text {
+        @apply font-text text-sm font-medium text-brand;
+    }
+
+    .app-goal-icon {
+        @apply text-sm text-brand;
     }
 
     .app-nav-btn {
-        @apply flex h-8 w-8 items-center justify-center rounded-lg;
-        @apply border border-surface-border text-ink-secondary;
-        @apply hover:bg-surface-secondary transition-colors duration-150;
-        @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green;
+        @apply flex h-10 w-10 items-center justify-center rounded-sm;
+        @apply border border-stroke text-fg-secondary;
+        @apply hover:bg-surface transition-colors duration-150;
+        @apply focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-brand;
     }
 
-    .app-main {
-        @apply flex flex-1 flex-col;
+    .app-nav-btn i {
+        @apply text-base;
     }
 }
