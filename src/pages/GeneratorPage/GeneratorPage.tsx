@@ -42,7 +42,7 @@ const GeneratorPage: FC = () => {
 
     const [jobTitle, company, additionalDetails] = watch(['jobTitle', 'company', 'additionalDetails']);
 
-    const isCompleted = status.phase === GeneratorState.COMPLETED;
+    const isCompleted = status.phase === GeneratorState.COMPLETED || status.phase === GeneratorState.ERROR;
     const isGenerating = status.phase === GeneratorState.GENERATING;
 
     const pageTitle = jobTitle && company ? `${jobTitle}, ${company}` : jobTitle || company || 'New application';
@@ -57,13 +57,18 @@ const GeneratorPage: FC = () => {
     const onSubmit = async (data: IForm) => {
         setStatus({phase: GeneratorState.GENERATING});
 
-        const letter = await generateLetter(data);
+        try {
+            const letter = await generateLetter(data);
 
-        if (!isMountedRef.current) return;
+            if (!isMountedRef.current) return;
 
-        addApplication({...data, generatedLetter: letter});
-        setStatus({phase: GeneratorState.COMPLETED, letter});
-        reset();
+            addApplication({...data, generatedLetter: letter});
+            setStatus({phase: GeneratorState.COMPLETED, letter});
+            reset();
+        } catch {
+            if (!isMountedRef.current) return;
+            setStatus({phase: GeneratorState.ERROR, message: 'Something went wrong. Please try again.'});
+        }
     };
 
     const handleTryAgain = () => setStatus({phase: GeneratorState.IDLE});

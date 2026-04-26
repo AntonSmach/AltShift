@@ -16,6 +16,9 @@ const LetterPreview: FC<{status: GeneratorStatus}> = ({status}) => {
             <p className='font-text text-sm leading-relaxed text-ink-secondary whitespace-pre-line'>{status.letter}</p>
         );
     }
+    if (status.phase === GeneratorState.ERROR) {
+        return <p className='font-text text-sm text-red-500'>{status.message}</p>;
+    }
     return <p className='font-text text-sm text-ink-tertiary'>Your personalized job application will appear here...</p>;
 };
 
