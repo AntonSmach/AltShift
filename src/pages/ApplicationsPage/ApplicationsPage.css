@@ -1,0 +1,39 @@
+@reference "../../styles/theme.css";
+
+@layer components {
+    .applications-page {
+        @apply mx-auto w-full max-w-5xl px-4 py-8 md:px-8;
+    }
+
+    .applications-header {
+        @apply mb-6 flex items-center justify-between;
+    }
+
+    .applications-title {
+        @apply font-display text-3xl font-bold text-fg-primary md:text-4xl;
+    }
+
+    .applications-divider {
+        @apply mb-1 h-px w-full bg-stroke;
+    }
+
+    .applications-btn-label-full {
+        @apply hidden sm:inline;
+    }
+
+    .applications-btn-label-short {
+        @apply sm:hidden;
+    }
+
+    .applications-empty {
+        @apply mt-8;
+    }
+
+    .applications-list {
+        @apply mt-8 flex flex-col gap-8;
+    }
+
+    .applications-grid {
+        @apply grid grid-cols-1 gap-4 sm:grid-cols-2;
+    }
+}
