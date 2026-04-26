@@ -1,0 +1,15 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center gap-1.5 font-text transition-colors duration-150 rounded cursor-pointer;
+
+        &:focus-visible {
+            @apply outline-2 outline-offset-2 outline-brand;
+        }
+    }
+
+    .icon-btn {
+        @apply text-sm;
+    }
+}
