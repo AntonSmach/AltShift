@@ -9,8 +9,8 @@ import Spinner from '@components/Spinner';
 import {useApplications} from '@context/applications/useApplications';
 import {useClipboard} from '@hooks/useClipboard';
 import {generateLetterWithDelay} from '@utils/generateLetter';
-import {GeneratorState} from '@models/enums/generator-state.enum';
 import {cn} from '@utils/cn.ts';
+import {GeneratorState} from '@models/enums/generator-state.enum.ts';
 
 const MAX_CHARS = 1200;
 
@@ -21,12 +21,29 @@ interface IForm {
     additionalDetails: string;
 }
 
+export type GeneratorStatus = {phase: 'idle'} | {phase: 'generating'} | {phase: 'completed'; letter: string};
+
+const LetterPreview: FC<{status: GeneratorStatus}> = ({status}) => {
+    if (status.phase === 'generating') {
+        return (
+            <div className='flex flex-1 items-center justify-center'>
+                <Spinner size={36} className='text-ink-tertiary' />
+            </div>
+        );
+    }
+    if (status.phase === 'completed') {
+        return (
+            <p className='font-text text-sm leading-relaxed text-ink-secondary whitespace-pre-line'>{status.letter}</p>
+        );
+    }
+    return <p className='font-text text-sm text-ink-tertiary'>Your personalized job application will appear here...</p>;
+};
+
 const GeneratorPage: FC = () => {
     const {addApplication, applications, goal, goalReached} = useApplications();
     const {copy, copied} = useClipboard();
 
-    const [generatorState, setGeneratorState] = useState<GeneratorState>(GeneratorState.IDLE);
-    const [generatedLetter, setGeneratedLetter] = useState('');
+    const [status, setStatus] = useState<GeneratorStatus>({phase: GeneratorState.IDLE});
     const isMountedRef = useRef(true);
 
     const {
@@ -42,8 +59,8 @@ const GeneratorPage: FC = () => {
 
     const [jobTitle, company, additionalDetails] = watch(['jobTitle', 'company', 'additionalDetails']);
 
-    const isCompleted = generatorState === GeneratorState.COMPLETED;
-    const isGenerating = generatorState === GeneratorState.GENERATING;
+    const isCompleted = status.phase === GeneratorState.COMPLETED;
+    const isGenerating = status.phase === GeneratorState.GENERATING;
 
     const pageTitle = jobTitle && company ? `${jobTitle}, ${company}` : jobTitle || company || 'New application';
 
@@ -55,22 +72,18 @@ const GeneratorPage: FC = () => {
     }, []);
 
     const onSubmit = async (data: IForm) => {
-        setGeneratorState(GeneratorState.GENERATING);
+        setStatus({phase: GeneratorState.GENERATING});
 
         const letter = await generateLetterWithDelay(data.jobTitle, data.company, data.skills, data.additionalDetails);
 
         if (!isMountedRef.current) return;
 
         addApplication({...data, generatedLetter: letter});
-        setGeneratedLetter(letter);
-        setGeneratorState(GeneratorState.COMPLETED);
+        setStatus({phase: GeneratorState.COMPLETED, letter});
         reset();
     };
 
-    const handleTryAgain = () => {
-        setGeneratorState(GeneratorState.IDLE);
-        setGeneratedLetter('');
-    };
+    const handleTryAgain = () => setStatus({phase: GeneratorState.IDLE});
 
     return (
         <div className='mx-auto w-full max-w-5xl px-4 py-8 md:px-8'>
@@ -140,24 +153,12 @@ const GeneratorPage: FC = () => {
 
                 <div className='flex flex-col gap-3'>
                     <div className='flex flex-1 flex-col rounded-2xl bg-surface-secondary p-6 min-h-64'>
-                        {isCompleted ? (
-                            <p className='font-text text-sm leading-relaxed text-ink-secondary whitespace-pre-line'>
-                                {generatedLetter}
-                            </p>
-                        ) : isGenerating ? (
-                            <div className='flex flex-1 items-center justify-center'>
-                                <Spinner size={36} className='text-ink-tertiary' />
-                            </div>
-                        ) : (
-                            <p className='font-text text-sm text-ink-tertiary'>
-                                Your personalized job application will appear here...
-                            </p>
-                        )}
+                        <LetterPreview status={status} />
                     </div>
                     <IconButton
                         icon={copied ? 'icon-check' : 'icon-copy'}
                         label={copied ? 'Copied!' : 'Copy to clipboard'}
-                        onClick={() => copy(generatedLetter)}
+                        onClick={() => status.phase === GeneratorState.COMPLETED && copy(status.letter)}
                         disabled={!isCompleted}
                         className={cn(
                             'self-end',
