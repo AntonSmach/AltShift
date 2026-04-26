@@ -10,7 +10,8 @@
         "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
         "format": "npx prettier --write . && npx eslint --fix .",
         "preview": "vite preview",
-        "create-icon-fonts": "rimraf ./public/icons/fonts/alt-shift* && fantasticon ./src/assets/icons -o ./public/icons/fonts/ -n alt-shift --normalize true --selector i -h 300 -t ttf woff woff2 -g html css"
+        "create-icon-fonts": "rimraf ./public/icons/fonts/alt-shift* && fantasticon ./src/assets/icons -o ./public/icons/fonts/ -n alt-shift --normalize true --selector i -h 300 -t ttf woff woff2 -g html css",
+        "prepare": "husky"
     },
     "dependencies": {
         "classnames": "2.5.1",
@@ -19,7 +20,16 @@
         "react-router-dom": "7.14.2",
         "tailwind-merge": "3.5.0"
     },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "eslint --fix --max-warnings 0",
+            "prettier --write"
+        ],
+        "*.{css,json,md}": "prettier --write"
+    },
     "devDependencies": {
+        "@commitlint/cli": "20.5.2",
+        "@commitlint/config-conventional": "20.5.0",
         "@eslint/js": "9.39.4",
         "@types/node": "24.12.2",
         "@types/react": "19.2.14",
@@ -36,6 +46,8 @@
         "eslint-plugin-react-refresh": "0.5.2",
         "fantasticon": "4.1.0",
         "globals": "17.5.0",
+        "husky": "9.1.7",
+        "lint-staged": "16.4.0",
         "postcss": "8.5.10",
         "prettier": "3.8.3",
         "rimraf": "6.1.3",
