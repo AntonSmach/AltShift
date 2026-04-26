@@ -37,7 +37,9 @@ export const AppLayout: FC<IAppLayoutProps> = memo(({children}) => {
                                 <span className='app-goal-text'>
                                     {goal}/{goal} applications generated
                                 </span>
-                                <i className='icon-check app-goal-icon' />
+                                <div className='app-goal-icon-wrapper'>
+                                    <i className='icon-check app-goal-icon' />
+                                </div>
                             </div>
                         )}
 

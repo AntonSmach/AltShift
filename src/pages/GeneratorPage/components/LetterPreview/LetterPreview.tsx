@@ -41,7 +41,7 @@ const LetterPreview: FC<ILetterPreviewProps> = ({status, copied, isCompleted, on
             {isCompleted && (
                 <div className='letter-preview-footer'>
                     <IconButton
-                        icon={copied ? 'icon-check' : 'icon-copy'}
+                        startIcon={copied ? 'icon-check' : 'icon-copy'}
                         label={copied ? 'Copied!' : 'Copy to clipboard'}
                         onClick={onCopy}
                         className={cn('letter-preview-copy-btn', copied && 'letter-preview-copy-btn--copied')}

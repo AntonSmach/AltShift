@@ -43,11 +43,15 @@
     }
 
     .app-goal-text {
-        @apply font-text text-sm font-medium text-brand;
+        @apply font-text text-body-lg text-fg-muted;
+    }
+
+    .app-goal-icon-wrapper {
+        @apply flex items-center justify-center w-7 h-7 rounded-full bg-success-light;
     }
 
     .app-goal-icon {
-        @apply text-sm text-brand;
+        @apply text-sm text-success;
     }
 
     .app-nav-btn {

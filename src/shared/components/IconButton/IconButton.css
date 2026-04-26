@@ -1,7 +1,7 @@
 @reference "@styles/theme.css";
 
 @layer components {
-    .btn {
+    .icon-btn {
         @apply inline-flex items-center gap-1.5 font-text transition-colors duration-150 rounded cursor-pointer;
 
         &:focus-visible {
@@ -9,7 +9,7 @@
         }
     }
 
-    .icon-btn {
+    .icon-btn-icon {
         @apply text-sm;
     }
 }

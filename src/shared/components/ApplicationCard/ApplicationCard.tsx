@@ -21,13 +21,13 @@ const ApplicationCard: FC<IApplicationCardProps> = memo(({application, onDelete}
             </div>
             <div className='application-card-footer'>
                 <IconButton
-                    icon='icon-trash'
+                    startIcon='icon-trash'
                     label='Delete'
                     onClick={() => onDelete(application.id)}
                     className='application-card-delete-btn'
                 />
                 <IconButton
-                    icon={copied ? 'icon-check' : 'icon-copy'}
+                    endIcon={copied ? 'icon-check' : 'icon-copy'}
                     label={copied ? 'Copied!' : 'Copy to clipboard'}
                     onClick={() => copy(application.generatedLetter)}
                     className={cn('application-card-copy-btn', copied && 'application-card-copy-btn--copied')}
