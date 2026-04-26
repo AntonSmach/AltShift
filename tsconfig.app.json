@@ -34,7 +34,8 @@
             "@utils/*": ["./utils/*"],
             "@helpers/*": ["./helpers/*"],
             "@store/*": ["./store/*"],
-            "@context/*": ["./context/*"]
+            "@context/*": ["./context/*"],
+            "@styles/*": ["./styles/*"]
         }
     },
     "include": ["src"]
