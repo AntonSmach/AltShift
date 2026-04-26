@@ -1,0 +1,45 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .form-input-wrapper {
+        @apply flex flex-col gap-1.5;
+    }
+
+    .form-input-label {
+        @apply font-text text-sm font-medium text-fg-primary;
+    }
+
+    .form-input-required {
+        @apply ml-0.5 text-fg-error;
+    }
+
+    .form-input {
+        @apply h-11 w-full rounded-xl border border-stroke bg-white px-4;
+        @apply font-text text-base text-fg-primary;
+        @apply outline-none transition-colors duration-150;
+        &::placeholder {
+            @apply text-fg-muted;
+        }
+        &:focus {
+            @apply border-brand;
+        }
+        &:disabled {
+            @apply cursor-not-allowed bg-surface text-fg-disabled;
+        }
+    }
+
+    .form-input--error {
+        @apply border-stroke-error;
+        &:focus {
+            @apply border-stroke-error;
+        }
+    }
+
+    .form-input-hint {
+        @apply min-h-5;
+    }
+
+    .form-input-error-msg {
+        @apply font-text text-sm text-fg-error;
+    }
+}
