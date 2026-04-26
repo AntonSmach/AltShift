@@ -1,8 +1,8 @@
 import {FC, memo, type ReactNode} from 'react';
 import {Link} from 'react-router-dom';
 import {useApplications} from '@context/applications/useApplications';
-import ProgressDots from '@components/ProgressDots';
-import AltShiftLogo from '@components/AltShiftLogo';
+import ProgressDots from '@components/ProgressDots/ProgressDots';
+import AltShiftLogo from '@components/AltShiftLogo/AltShiftLogo';
 
 interface IAppLayoutProps {
     children: ReactNode;

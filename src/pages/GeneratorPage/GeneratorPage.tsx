@@ -1,11 +1,11 @@
 import {FC, useEffect, useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
-import IconButton from '@components/IconButton';
-import FormInput from '@components/FormInput';
-import FormTextarea from '@components/FormTextarea';
-import Button from '@components/Button';
-import GoalBanner from '@components/GoalBanner';
-import LetterPreview from '@pages/GeneratorPage/components/LetterPreview';
+import IconButton from '@components/IconButton/IconButton';
+import FormInput from '@components/FormInput/FormInput';
+import FormTextarea from '@components/FormTextarea/FormTextarea';
+import Button from '@components/Button/Button';
+import GoalBanner from '@components/GoalBanner/GoalBanner';
+import LetterPreview from '@pages/GeneratorPage/components/LetterPreview/LetterPreview';
 import {useApplications} from '@context/applications/useApplications';
 import {useClipboard} from '@hooks/useClipboard';
 import {cn} from '@utils/cn.ts';

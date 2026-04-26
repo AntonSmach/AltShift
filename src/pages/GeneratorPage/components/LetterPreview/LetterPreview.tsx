@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import Spinner from '@components/Spinner';
+import Spinner from '@components/Spinner/Spinner';
 import {GeneratorState} from '@models/enums/generator-state.enum';
 import {GeneratorStatus} from '@pages/GeneratorPage/types/generator.types';
 

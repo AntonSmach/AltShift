@@ -1,6 +1,6 @@
 import {FC, memo} from 'react';
-import ProgressDots from '@components/ProgressDots';
-import Button from '@components/Button';
+import ProgressDots from '@components/ProgressDots/ProgressDots';
+import Button from '@components/Button/Button';
 
 interface IGoalBannerProps {
     current: number;

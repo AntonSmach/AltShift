@@ -1,9 +1,11 @@
 import {lazy, Suspense} from 'react';
 import type {RouteObject} from 'react-router-dom';
 import {Navigate} from 'react-router-dom';
-import Spinner from '@components/Spinner';
+import Spinner from '@components/Spinner/Spinner';
 
+// eslint-disable-next-line react-refresh/only-export-components
 const GeneratorPage = lazy(() => import('@pages/GeneratorPage/GeneratorPage'));
+// eslint-disable-next-line react-refresh/only-export-components
 const ApplicationsPage = lazy(() => import('@pages/ApplicationsPage/ApplicationsPage'));
 
 const fallback = (

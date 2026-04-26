@@ -1,7 +1,7 @@
 import {FC, memo} from 'react';
 import type {IApplication} from '@models/interfaces/application.interface';
 import {useClipboard} from '@hooks/useClipboard';
-import IconButton from '@components/IconButton';
+import IconButton from '@components/IconButton/IconButton';
 
 interface IApplicationCardProps {
     application: IApplication;

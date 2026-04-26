@@ -1,5 +1,5 @@
 import {ButtonHTMLAttributes, forwardRef} from 'react';
-import Spinner from '@components/Spinner';
+import Spinner from '@components/Spinner/Spinner';
 import {cn} from '@utils/cn';
 
 export type IButtonVariant = 'primary' | 'secondary' | 'ghost';

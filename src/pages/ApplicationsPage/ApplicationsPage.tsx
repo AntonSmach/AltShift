@@ -1,8 +1,8 @@
 import {FC, useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
-import ApplicationCard from '@components/ApplicationCard';
-import GoalBanner from '@components/GoalBanner';
-import Button from '@components/Button';
+import ApplicationCard from '@components/ApplicationCard/ApplicationCard';
+import GoalBanner from '@components/GoalBanner/GoalBanner';
+import Button from '@components/Button/Button';
 import {useApplications} from '@context/applications/useApplications';
 
 const ApplicationsPage: FC = () => {
