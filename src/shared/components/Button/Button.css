@@ -1,0 +1,59 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .btn {
+        @apply cursor-pointer inline-flex items-center justify-center rounded-xl;
+        @apply font-text font-semibold text-base transition-colors duration-150 select-none;
+        @apply h-13 px-6;
+        &:focus-visible {
+            @apply outline outline-2 outline-offset-2 outline-brand;
+        }
+    }
+
+    .btn--full {
+        @apply w-full;
+    }
+
+    .btn--loading {
+        @apply bg-brand text-white cursor-not-allowed opacity-90;
+    }
+
+    .btn--primary {
+        @apply bg-brand text-white;
+        &:hover {
+            @apply bg-brand-dark;
+        }
+        &:active {
+            @apply bg-brand-dark;
+        }
+    }
+
+    .btn--primary-disabled {
+        @apply bg-stroke text-fg-disabled cursor-not-allowed;
+    }
+
+    .btn--secondary {
+        @apply border border-stroke text-fg-primary bg-white;
+        &:hover {
+            @apply bg-surface;
+        }
+        &:active {
+            @apply bg-surface;
+        }
+    }
+
+    .btn--secondary-disabled {
+        @apply border border-stroke text-fg-disabled bg-white cursor-not-allowed;
+    }
+
+    .btn--ghost {
+        @apply text-fg-primary;
+        &:hover {
+            @apply text-fg-secondary;
+        }
+    }
+
+    .btn--ghost-disabled {
+        @apply text-fg-disabled cursor-not-allowed;
+    }
+}
