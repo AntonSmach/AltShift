@@ -5,12 +5,13 @@ import FormInput from '@components/FormInput';
 import FormTextarea from '@components/FormTextarea';
 import Button from '@components/Button';
 import GoalBanner from '@components/GoalBanner';
-import Spinner from '@components/Spinner';
+import LetterPreview from '@pages/GeneratorPage/components/LetterPreview';
 import {useApplications} from '@context/applications/useApplications';
 import {useClipboard} from '@hooks/useClipboard';
-import {generateLetterWithDelay} from '@utils/generateLetter';
 import {cn} from '@utils/cn.ts';
-import {GeneratorState} from '@models/enums/generator-state.enum.ts';
+import {GeneratorState} from '@models/enums/generator-state.enum';
+import {GeneratorStatus} from '@pages/GeneratorPage/types/generator.types.ts';
+import {generateLetter} from '@pages/GeneratorPage/helpers/generate-letter.ts';
 
 const MAX_CHARS = 1200;
 
@@ -20,24 +21,6 @@ interface IForm {
     skills: string;
     additionalDetails: string;
 }
-
-export type GeneratorStatus = {phase: 'idle'} | {phase: 'generating'} | {phase: 'completed'; letter: string};
-
-const LetterPreview: FC<{status: GeneratorStatus}> = ({status}) => {
-    if (status.phase === 'generating') {
-        return (
-            <div className='flex flex-1 items-center justify-center'>
-                <Spinner size={36} className='text-ink-tertiary' />
-            </div>
-        );
-    }
-    if (status.phase === 'completed') {
-        return (
-            <p className='font-text text-sm leading-relaxed text-ink-secondary whitespace-pre-line'>{status.letter}</p>
-        );
-    }
-    return <p className='font-text text-sm text-ink-tertiary'>Your personalized job application will appear here...</p>;
-};
 
 const GeneratorPage: FC = () => {
     const {addApplication, applications, goal, goalReached} = useApplications();
@@ -74,7 +57,7 @@ const GeneratorPage: FC = () => {
     const onSubmit = async (data: IForm) => {
         setStatus({phase: GeneratorState.GENERATING});
 
-        const letter = await generateLetterWithDelay(data.jobTitle, data.company, data.skills, data.additionalDetails);
+        const letter = await generateLetter(data);
 
         if (!isMountedRef.current) return;
 

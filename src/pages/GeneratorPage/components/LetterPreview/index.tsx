@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import Spinner from '@components/Spinner';
-import {GeneratorStatus} from '@pages/GeneratorPage/GeneratorPage.tsx';
-import {GeneratorState} from '@models/enums/generator-state.enum.ts';
+import {GeneratorState} from '@models/enums/generator-state.enum';
+import {GeneratorStatus} from '@pages/GeneratorPage/types/generator.types';
 
 const LetterPreview: FC<{status: GeneratorStatus}> = ({status}) => {
     if (status.phase === GeneratorState.GENERATING) {
