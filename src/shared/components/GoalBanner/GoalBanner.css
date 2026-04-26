@@ -1,0 +1,27 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .goal-banner {
+        @apply flex flex-col items-center gap-4 rounded-2xl bg-brand-light px-[320px] py-[54px] text-center;
+    }
+
+    .goal-banner-title {
+        @apply font-display text-title font-semibold text-fg-primary;
+    }
+
+    .goal-banner-subtitle {
+        @apply mt-1 font-text text-body-lg font-normal text-fg-secondary;
+    }
+
+    .goal-banner-btn {
+        @apply gap-1.5;
+    }
+
+    .goal-banner-progress {
+        @apply flex flex-col items-center gap-1.5;
+    }
+
+    .goal-banner-count {
+        @apply font-text text-body-lg font-normal text-fg-muted;
+    }
+}

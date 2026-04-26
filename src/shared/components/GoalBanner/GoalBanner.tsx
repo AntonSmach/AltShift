@@ -1,6 +1,7 @@
 import {FC, memo} from 'react';
 import ProgressDots from '@components/ProgressDots/ProgressDots';
 import Button from '@components/Button/Button';
+import './GoalBanner.css';
 
 interface IGoalBannerProps {
     current: number;
@@ -9,19 +10,19 @@ interface IGoalBannerProps {
 }
 
 const GoalBanner: FC<IGoalBannerProps> = memo(({current, total, onCreateNew}) => (
-    <div className='flex flex-col items-center gap-4 rounded-2xl bg-brand-light px-6 py-8 text-center'>
+    <div className='goal-banner'>
         <div>
-            <h2 className='font-display text-2xl font-bold text-fg-primary'>Hit your goal</h2>
-            <p className='mt-1 font-text text-sm text-fg-secondary'>
+            <h2 className='goal-banner-title'>Hit your goal</h2>
+            <p className='goal-banner-subtitle'>
                 Generate and send out couple more job applications today to get hired faster
             </p>
         </div>
-        <Button icon='icon-plus' onClick={onCreateNew} className='gap-1.5'>
+        <Button icon='icon-plus' onClick={onCreateNew} className='goal-banner-btn'>
             Create New
         </Button>
-        <div className='flex flex-col items-center gap-1.5'>
+        <div className='goal-banner-progress'>
             <ProgressDots current={current} total={total} />
-            <span className='font-text text-sm text-fg-muted'>
+            <span className='goal-banner-count'>
                 {current} out of {total}
             </span>
         </div>
