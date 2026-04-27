@@ -17,7 +17,7 @@ const GoalBanner: FC<IGoalBannerProps> = memo(({current, total, onCreateNew}) =>
                 Generate and send out couple more job applications today to get hired faster
             </p>
         </div>
-        <Button startIcon='icon-plus' size='md' onClick={onCreateNew} className='goal-banner-btn'>
+        <Button startIcon='icon-plus' size='md' onClick={onCreateNew}>
             Create New
         </Button>
         <div className='goal-banner-progress'>

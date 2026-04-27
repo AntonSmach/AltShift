@@ -79,7 +79,12 @@ const GeneratorPage: FC = () => {
         <div className='generator-page'>
             <div className='generator-layout'>
                 <div>
-                    <h1 className={cn('generator-title', !jobTitle && !company && 'generator-title--placeholder')}>
+                    <h1
+                        className={cn(
+                            'generator-title',
+                            !jobTitle && !company && 'generator-title--placeholder',
+                            'mb-3',
+                        )}>
                         {pageTitle}
                     </h1>
                     <div className='generator-divider' />
@@ -91,7 +96,6 @@ const GeneratorPage: FC = () => {
                                 placeholder='Product manager'
                                 disabled={isGenerating}
                                 hasError={!!errors.jobTitle}
-                                errorMessage='Job title is required'
                                 required
                                 {...register('jobTitle', {required: true})}
                             />
@@ -100,7 +104,6 @@ const GeneratorPage: FC = () => {
                                 placeholder='Apple'
                                 disabled={isGenerating}
                                 hasError={!!errors.company}
-                                errorMessage='Company is required'
                                 required
                                 {...register('company', {required: true})}
                             />
@@ -121,7 +124,6 @@ const GeneratorPage: FC = () => {
                             currentLength={additionalDetails.length}
                             disabled={isGenerating}
                             hasError={!!errors.additionalDetails}
-                            errorMessage={`Maximum ${MAX_CHARS} characters`}
                             {...register('additionalDetails', {maxLength: MAX_CHARS})}
                         />
 
@@ -131,11 +133,17 @@ const GeneratorPage: FC = () => {
                                 variant='secondary'
                                 startIcon='icon-refresh'
                                 fullWidth
+                                className='my-4 h-14 text-fg-secondary'
                                 onClick={handleTryAgain}>
                                 Try Again
                             </Button>
                         ) : (
-                            <Button type='submit' fullWidth loading={isGenerating} disabled={!isValid}>
+                            <Button
+                                type='submit'
+                                fullWidth
+                                className='my-4 h-14'
+                                loading={isGenerating}
+                                disabled={!isValid}>
                                 Generate Now
                             </Button>
                         )}

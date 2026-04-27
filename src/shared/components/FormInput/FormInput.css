@@ -6,7 +6,7 @@
     }
 
     .form-input-label {
-        @apply font-text text-sm font-medium text-fg-primary;
+        @apply font-text text-sm leading-5 font-medium text-fg-secondary;
     }
 
     .form-input-required {
@@ -14,15 +14,19 @@
     }
 
     .form-input {
-        @apply h-11 w-full rounded-xl border border-stroke bg-white px-4;
-        @apply font-text text-base text-fg-primary;
+        @apply h-10 w-full rounded-xl border border-stroke bg-white px-3 py-2;
+        @apply font-text text-base leading-6 text-fg-primary;
         @apply outline-none transition-colors duration-150;
+
         &::placeholder {
-            @apply text-fg-muted;
+            @apply text-sm leading-6 text-fg-muted;
         }
+
         &:focus {
-            @apply border-brand;
+            @apply border-stroke-success;
+            box-shadow: 0 0 0 3px #73e2a352;
         }
+
         &:disabled {
             @apply cursor-not-allowed bg-surface text-fg-disabled;
         }
@@ -30,8 +34,10 @@
 
     .form-input--error {
         @apply border-stroke-error;
+
         &:focus {
             @apply border-stroke-error;
+            box-shadow: 0 0 0 3px #fda29b61;
         }
     }
 

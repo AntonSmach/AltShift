@@ -22,7 +22,7 @@
     }
 
     .generator-form {
-        @apply mt-6 flex flex-col gap-5;
+        @apply mt-4 flex flex-col;
     }
 
     .generator-form-row {
@@ -38,6 +38,6 @@
     }
 
     .generator-goal {
-        @apply mt-8;
+        @apply mt-12;
     }
 }

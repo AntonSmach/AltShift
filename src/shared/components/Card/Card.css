@@ -23,6 +23,7 @@
 
     .application-card-delete-btn {
         @apply text-base font-semibold leading-6 text-fg-tertiary;
+
         &:hover {
             @apply text-fg-error;
         }

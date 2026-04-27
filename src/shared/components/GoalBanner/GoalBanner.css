@@ -2,7 +2,7 @@
 
 @layer components {
     .goal-banner {
-        @apply flex flex-col items-center gap-4 rounded-2xl bg-brand-light text-center;
+        @apply flex flex-col items-center gap-4 rounded-2xl bg-brand-light text-center h-[378px];
         @apply px-6 py-8 sm:px-16 sm:py-10 lg:px-[320px] lg:py-[54px];
     }
 
@@ -11,15 +11,11 @@
     }
 
     .goal-banner-subtitle {
-        @apply mt-1 font-text text-body-lg font-normal text-fg-secondary;
-    }
-
-    .goal-banner-btn {
-        @apply gap-1.5;
+        @apply font-text text-body-lg font-normal text-fg-secondary;
     }
 
     .goal-banner-progress {
-        @apply flex flex-col items-center gap-1.5;
+        @apply flex flex-col items-center gap-1.5 my-4;
     }
 
     .goal-banner-count {
