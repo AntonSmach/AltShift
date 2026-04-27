@@ -27,18 +27,4 @@
             @apply text-fg-error;
         }
     }
-
-    .application-card-copy-btn {
-        @apply text-base font-semibold leading-6 text-fg-tertiary;
-        &:hover {
-            @apply text-fg-primary;
-        }
-    }
-
-    .application-card-copy-btn--copied {
-        @apply text-brand;
-        &:hover {
-            @apply text-brand;
-        }
-    }
 }

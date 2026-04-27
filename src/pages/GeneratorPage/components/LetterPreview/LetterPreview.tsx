@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, memo} from 'react';
 import Spinner from '@components/Spinner/Spinner';
 import IconButton from '@components/IconButton/IconButton';
 import {cn} from '@utils/cn';
@@ -13,7 +13,7 @@ interface ILetterPreviewProps {
     onCopy: () => void;
 }
 
-const LetterPreview: FC<ILetterPreviewProps> = ({status, copied, isCompleted, onCopy}) => {
+const LetterPreview: FC<ILetterPreviewProps> = memo(({status, copied, isCompleted, onCopy}) => {
     const renderContent = () => {
         if (status.phase === GeneratorState.GENERATING) {
             return (
@@ -44,12 +44,14 @@ const LetterPreview: FC<ILetterPreviewProps> = ({status, copied, isCompleted, on
                         startIcon={copied ? 'icon-check' : 'icon-copy'}
                         label={copied ? 'Copied!' : 'Copy to clipboard'}
                         onClick={onCopy}
-                        className={cn('letter-preview-copy-btn', copied && 'letter-preview-copy-btn--copied')}
+                        className={cn('copy-btn', copied && 'copy-btn--copied')}
                     />
                 </div>
             )}
         </div>
     );
-};
+});
+
+LetterPreview.displayName = 'LetterPreview';
 
 export default LetterPreview;

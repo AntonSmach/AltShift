@@ -1,0 +1,17 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .copy-btn {
+        @apply text-base font-semibold leading-6 text-fg-tertiary;
+        &:hover {
+            @apply text-fg-primary;
+        }
+    }
+
+    .copy-btn--copied {
+        @apply text-brand;
+        &:hover {
+            @apply text-brand;
+        }
+    }
+}

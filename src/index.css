@@ -1,4 +1,5 @@
 @import './styles/theme.css';
+@import './styles/shared.css';
 
 @font-face {
     font-family: 'FixelDisplay';
@@ -84,7 +85,7 @@ i[class*=' icon-'] {
 
     body {
         margin: 0;
-        font-family: var(--font-text);
+        font-family: var(--font-text), serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background-color: #ffffff;

@@ -30,7 +30,7 @@ const ApplicationCard: FC<IApplicationCardProps> = memo(({application, onDelete}
                     endIcon={copied ? 'icon-check' : 'icon-copy'}
                     label={copied ? 'Copied!' : 'Copy to clipboard'}
                     onClick={() => copy(application.generatedLetter)}
-                    className={cn('application-card-copy-btn', copied && 'application-card-copy-btn--copied')}
+                    className={cn('copy-btn', copied && 'copy-btn--copied')}
                 />
             </div>
         </div>

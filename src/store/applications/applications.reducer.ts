@@ -6,5 +6,7 @@ export function applicationsReducer(state: IState, action: IAction): IState {
             return {applications: [action.payload, ...state.applications]};
         case 'DELETE':
             return {applications: state.applications.filter((application) => application.id !== action.payload.id)};
+        default:
+            return state;
     }
 }
