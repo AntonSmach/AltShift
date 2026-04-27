@@ -1,4 +1,4 @@
-import {FC, useCallback, useEffect, useRef, useState} from 'react';
+import {FC, useCallback, useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import FormInput from '@components/FormInput/FormInput';
 import FormTextarea from '@components/FormTextarea/FormTextarea';
@@ -23,11 +23,11 @@ interface IForm {
 }
 
 const GeneratorPage: FC = () => {
-    const {addApplication, applications, goal, goalReached} = useApplications();
+    const {addApplication, deleteApplication, applications, goal, goalReached} = useApplications();
     const {copy, copied} = useClipboard();
 
     const [status, setStatus] = useState<GeneratorStatus>({phase: GeneratorState.IDLE});
-    const isMountedRef = useRef(true);
+    const lastSavedIdRef = useRef<string | null>(null);
 
     const {
         register,
@@ -47,31 +47,27 @@ const GeneratorPage: FC = () => {
 
     const pageTitle = jobTitle && company ? `${jobTitle}, ${company}` : jobTitle || company || 'New application';
 
-    useEffect(() => {
-        isMountedRef.current = true;
-        return () => {
-            isMountedRef.current = false;
-        };
-    }, []);
-
     const onSubmit = async (data: IForm) => {
         setStatus({phase: GeneratorState.GENERATING});
 
         try {
             const letter = await generateLetter(data);
-
-            if (!isMountedRef.current) return;
-
-            addApplication({...data, generatedLetter: letter});
+            const id = crypto.randomUUID();
+            lastSavedIdRef.current = id;
+            addApplication({...data, id, generatedLetter: letter});
             setStatus({phase: GeneratorState.COMPLETED, letter});
-            reset();
         } catch {
-            if (!isMountedRef.current) return;
             setStatus({phase: GeneratorState.ERROR, message: 'Something went wrong. Please try again.'});
         }
     };
 
-    const handleTryAgain = () => setStatus({phase: GeneratorState.IDLE});
+    const handleTryAgain = () => {
+        if (!lastSavedIdRef.current) return;
+        deleteApplication(lastSavedIdRef.current);
+        lastSavedIdRef.current = null;
+        reset();
+        setStatus({phase: GeneratorState.IDLE});
+    };
 
     const handleCopy = useCallback(() => {
         if (status.phase === GeneratorState.COMPLETED) {

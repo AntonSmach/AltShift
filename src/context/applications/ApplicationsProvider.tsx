@@ -17,10 +17,10 @@ export const ApplicationsProvider: FC<{children: ReactNode}> = ({children}) => {
     const value = useMemo(
         () => ({
             applications: state.applications,
-            addApplication: (data: Omit<IApplication, 'id' | 'createdAt'>) =>
+            addApplication: (data: Omit<IApplication, 'createdAt'>) =>
                 dispatch({
                     type: 'ADD',
-                    payload: {...data, id: crypto.randomUUID(), createdAt: Date.now()},
+                    payload: {...data, createdAt: Date.now()},
                 }),
             deleteApplication: (id: string) => dispatch({type: 'DELETE', payload: {id}}),
             goalReached: state.applications.length >= APPLICATIONS_GOAL,

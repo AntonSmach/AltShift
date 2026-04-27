@@ -6,7 +6,7 @@ export interface IState {
 
 export interface IApplicationsContextValue {
     applications: IApplication[];
-    addApplication: (data: Omit<IApplication, 'id' | 'createdAt'>) => void;
+    addApplication: (data: Omit<IApplication, 'createdAt'>) => void;
     deleteApplication: (id: string) => void;
     goalReached: boolean;
     goal: number;
