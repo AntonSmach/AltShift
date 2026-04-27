@@ -129,10 +129,9 @@ const GeneratorPage: FC = () => {
                             <Button
                                 type='button'
                                 variant='secondary'
-                                icon='icon-refresh'
+                                startIcon='icon-refresh'
                                 fullWidth
-                                onClick={handleTryAgain}
-                                className='gap-2'>
+                                onClick={handleTryAgain}>
                                 Try Again
                             </Button>
                         ) : (

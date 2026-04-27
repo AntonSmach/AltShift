@@ -4,12 +4,15 @@ import {cn} from '@utils/cn';
 import './Button.css';
 
 export type IButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type IButtonSize = 'sm' | 'md';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: IButtonVariant;
+    size?: IButtonSize;
     loading?: boolean;
     fullWidth?: boolean;
-    icon?: string;
+    startIcon?: string;
+    endIcon?: string;
 }
 
 const variantClass: Record<IButtonVariant, string> = {
@@ -24,8 +27,16 @@ const variantDisabledClass: Record<IButtonVariant, string> = {
     ghost: 'btn--ghost-disabled',
 };
 
+const sizeClass: Record<IButtonSize, string> = {
+    sm: 'btn--sm',
+    md: 'btn--md',
+};
+
 const Button = forwardRef<HTMLButtonElement, IButtonProps>(
-    ({variant = 'primary', loading, fullWidth, icon, children, className, ...props}, ref) => {
+    (
+        {variant = 'primary', size = 'md', loading, fullWidth, startIcon, endIcon, children, className, ...props},
+        ref,
+    ) => {
         const isDisabled = props.disabled || loading;
 
         return (
@@ -34,6 +45,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
                 disabled={isDisabled}
                 className={cn(
                     'btn',
+                    sizeClass[size],
                     fullWidth && 'btn--full',
                     loading ? 'btn--loading' : isDisabled ? variantDisabledClass[variant] : variantClass[variant],
                     className,
@@ -43,8 +55,9 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
                     <Spinner className='text-white' />
                 ) : (
                     <>
-                        {icon && <i className={cn(icon, 'text-base')} />}
+                        {startIcon && <i className={startIcon} />}
                         {children}
+                        {endIcon && <i className={endIcon} />}
                     </>
                 )}
             </button>

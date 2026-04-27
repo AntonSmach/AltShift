@@ -2,7 +2,7 @@
 
 @layer components {
     .application-card {
-        @apply flex flex-col gap-3 rounded-2xl bg-surface p-4 h-[240px];
+        @apply flex flex-col gap-3 rounded-xl bg-surface p-6 h-[240px];
     }
 
     .application-card-preview {

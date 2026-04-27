@@ -10,6 +10,6 @@
     }
 
     .icon-btn-icon {
-        @apply text-sm;
+        @apply text-[20px];
     }
 }

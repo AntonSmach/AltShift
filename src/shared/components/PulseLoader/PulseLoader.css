@@ -1,0 +1,28 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .pulse-loader {
+        @apply flex flex-1 items-center justify-center;
+    }
+
+    .pulse-loader-ball {
+        @apply w-20 h-20 rounded-full;
+        background: radial-gradient(circle at 30% 30%, #ffffff, #d0d5dd);
+        box-shadow: inset 0 -2px 32px rgba(16, 24, 40, 0.05);
+        animation: pulse-beat 2s ease-in-out infinite;
+    }
+}
+
+@keyframes pulse-beat {
+    0%,
+    100% {
+        box-shadow:
+            inset 0 -2px 32px rgba(16, 24, 40, 0.02),
+            0 0 8px 2px rgba(208, 213, 221, 0.2);
+    }
+    50% {
+        box-shadow:
+            inset 0 -2px 32px rgba(16, 24, 40, 0.12),
+            0 0 32px 10px rgba(208, 213, 221, 0.16);
+    }
+}

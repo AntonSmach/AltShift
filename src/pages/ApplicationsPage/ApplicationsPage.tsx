@@ -16,7 +16,7 @@ const ApplicationsPage: FC = () => {
         <div className='applications-page'>
             <div className='applications-header'>
                 <h1 className='applications-title'>Applications</h1>
-                <Button icon='icon-plus' onClick={handleCreateNew} className='gap-1.5'>
+                <Button startIcon='icon-plus' size='sm' onClick={handleCreateNew}>
                     <span className='applications-btn-label-full'>Create New</span>
                     <span className='applications-btn-label-short'>New</span>
                 </Button>

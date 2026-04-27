@@ -1,8 +1,9 @@
 @font-face {
-    font-family: "alt-shift";
-    src: url("./alt-shift.ttf?cabbace4b191660fbdec031abe799d6e") format("truetype"),
-url("./alt-shift.woff?cabbace4b191660fbdec031abe799d6e") format("woff"),
-url("./alt-shift.woff2?cabbace4b191660fbdec031abe799d6e") format("woff2");
+    font-family: 'alt-shift';
+    src:
+        url('./alt-shift.ttf?a219bd1664b10276df64f1689daa54f0') format('truetype'),
+        url('./alt-shift.woff?a219bd1664b10276df64f1689daa54f0') format('woff'),
+        url('./alt-shift.woff2?a219bd1664b10276df64f1689daa54f0') format('woff2');
 }
 
 i:before {
@@ -17,23 +18,23 @@ i:before {
 }
 
 i.icon-trash:before {
-    content: "\f101";
+    content: '\f101';
 }
 i.icon-spinner:before {
-    content: "\f102";
+    content: '\f102';
 }
 i.icon-refresh:before {
-    content: "\f103";
+    content: '\f103';
 }
 i.icon-plus:before {
-    content: "\f104";
+    content: '\f104';
 }
 i.icon-home:before {
-    content: "\f105";
+    content: '\f105';
 }
 i.icon-copy:before {
-    content: "\f106";
+    content: '\f106';
 }
 i.icon-check:before {
-    content: "\f107";
+    content: '\f107';
 }

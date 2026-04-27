@@ -9,7 +9,7 @@ interface IProgressDotsProps {
 }
 
 const ProgressDots: FC<IProgressDotsProps> = ({current, total, variant = 'bar', className}) => (
-    <div className={cn('flex items-center gap-1.5', className)}>
+    <div className={cn('flex items-center gap-1', className)}>
         {Array.from({length: total}, (_, i) => (
             <span
                 key={i}
