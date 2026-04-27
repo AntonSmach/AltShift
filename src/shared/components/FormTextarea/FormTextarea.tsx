@@ -10,7 +10,7 @@ export interface IFormTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaE
 }
 
 const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
-    ({label, hasError, errorMessage, currentLength = 0, id, ...props}, ref) => {
+    ({label, hasError, errorMessage, currentLength = 0, id, maxLength, ...props}, ref) => {
         const generatedId = useId();
         const inputId = id || generatedId;
 
@@ -27,9 +27,9 @@ const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
                     {...props}
                 />
                 <div className='form-textarea-footer'>
-                    {props.maxLength !== undefined && (
+                    {maxLength !== undefined && (
                         <span className={cn('form-textarea-counter', hasError && 'form-textarea-counter--error')}>
-                            {currentLength}/{props.maxLength}
+                            {currentLength}/{maxLength}
                         </span>
                     )}
                     <span className='form-textarea-error-msg'>{hasError && errorMessage ? errorMessage : ''}</span>
