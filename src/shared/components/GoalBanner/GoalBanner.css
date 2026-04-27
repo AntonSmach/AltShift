@@ -2,8 +2,7 @@
 
 @layer components {
     .goal-banner {
-        @apply flex flex-col items-center gap-4 rounded-2xl bg-brand-light text-center h-[378px];
-        @apply px-6 py-8 sm:px-16 sm:py-10 lg:px-[320px] lg:py-[54px];
+        @apply flex flex-col items-center justify-center gap-4 rounded-2xl bg-brand-light text-center h-[378px] w-full;
     }
 
     .goal-banner-title {

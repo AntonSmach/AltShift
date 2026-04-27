@@ -60,7 +60,7 @@ const ApplicationsPage: FC = () => {
                                 key={app.id}
                                 data-id={app.id}
                                 data-letter={app.generatedLetter}
-                                content={app.generatedLetter}>
+                                content={<p className='application-card-text'>{app.generatedLetter}</p>}>
                                 <IconButton
                                     startIcon='icon-trash'
                                     label='Delete'
