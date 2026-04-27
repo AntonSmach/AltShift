@@ -20,21 +20,20 @@ const ApplicationsPage: FC = () => {
 
     const handleCreateNew = useCallback(() => navigate('/generator'), [navigate]);
 
-    const handleCardAction = useCallback(
-        (e: MouseEvent<HTMLButtonElement>) => {
-            const action = e.currentTarget.dataset.action;
-            const card = e.currentTarget.closest<HTMLElement>('[data-id]');
-            if (!card) return;
-            const {id, letter} = card?.dataset;
-            if (action === CardAction.DELETE) {
-                id && deleteApplication(id);
-            }
-            if (action === CardAction.COPY) {
-                letter && copy(letter);
-            }
-        },
-        [deleteApplication, copy],
-    );
+    const handleCardAction = (e: MouseEvent<HTMLButtonElement>, action: CardAction) => {
+        const card = e.currentTarget.closest<HTMLElement>('[data-id]');
+
+        if (!card?.dataset?.id) return;
+        const {id} = card.dataset;
+
+        if (action === CardAction.DELETE) {
+            deleteApplication(id);
+        }
+        if (action === CardAction.COPY) {
+            const application = applications.find((application) => application.id === id);
+            application?.generatedLetter && copy(application.generatedLetter);
+        }
+    };
 
     return (
         <div className='applications-page'>
@@ -56,24 +55,17 @@ const ApplicationsPage: FC = () => {
                 <div className='applications-list'>
                     <div className='applications-grid'>
                         {applications.map((app) => (
-                            <Card
-                                key={app.id}
-                                size='sm'
-                                data-id={app.id}
-                                data-letter={app.generatedLetter}
-                                content={app.generatedLetter}>
+                            <Card key={app.id} size='sm' data-id={app.id} content={app.generatedLetter}>
                                 <IconButton
                                     startIcon='icon-trash'
                                     label='Delete'
-                                    data-action={CardAction.DELETE}
-                                    onClick={handleCardAction}
+                                    onClick={(e) => handleCardAction(e, CardAction.DELETE)}
                                     className='card-delete-btn'
                                 />
                                 <IconButton
                                     endIcon='icon-copy'
                                     label='Copy to clipboard'
-                                    data-action={CardAction.COPY}
-                                    onClick={handleCardAction}
+                                    onClick={(e) => handleCardAction(e, CardAction.COPY)}
                                     className='copy-btn'
                                 />
                             </Card>
