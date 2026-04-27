@@ -58,15 +58,16 @@ const ApplicationsPage: FC = () => {
                         {applications.map((app) => (
                             <Card
                                 key={app.id}
+                                size='sm'
                                 data-id={app.id}
                                 data-letter={app.generatedLetter}
-                                content={<p className='application-card-text'>{app.generatedLetter}</p>}>
+                                content={app.generatedLetter}>
                                 <IconButton
                                     startIcon='icon-trash'
                                     label='Delete'
                                     data-action={CardAction.DELETE}
                                     onClick={handleCardAction}
-                                    className='application-card-delete-btn'
+                                    className='card-delete-btn'
                                 />
                                 <IconButton
                                     endIcon='icon-copy'

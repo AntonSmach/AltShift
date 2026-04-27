@@ -1,27 +1,39 @@
 @reference "@styles/theme.css";
 
 @layer components {
-    .application-card {
-        @apply flex flex-col gap-3 rounded-xl bg-surface p-6 h-[240px];
+    .card {
+        @apply flex flex-col gap-3 rounded-xl bg-surface p-6;
     }
 
-    .application-card-preview {
-        @apply relative max-h-60 overflow-hidden;
+    .card--sm {
+        @apply h-[240px];
     }
 
-    .application-card-text {
-        @apply font-text text-body-lg font-normal text-fg-muted whitespace-pre-line;
+    .card--full {
+        @apply flex-1;
     }
 
-    .application-card-fade {
+    .card-preview {
+        @apply relative flex flex-1 flex-col;
+    }
+
+    .card-preview--fade {
+        @apply max-h-60 overflow-hidden;
+    }
+
+    .card-text {
+        @apply flex flex-1 flex-col font-text text-body-lg font-normal text-fg-muted whitespace-pre-line;
+    }
+
+    .card-fade {
         @apply absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t from-surface to-transparent;
     }
 
-    .application-card-footer {
+    .card-footer {
         @apply flex items-center justify-between pt-3;
     }
 
-    .application-card-delete-btn {
+    .card-delete-btn {
         @apply text-base font-semibold leading-6 text-fg-tertiary;
 
         &:hover {

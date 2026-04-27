@@ -1,27 +1,7 @@
 @reference "@styles/theme.css";
 
 @layer components {
-    .letter-preview {
-        @apply flex flex-1 flex-col;
-    }
-
-    .letter-preview-content {
-        @apply flex flex-1 flex-col;
-    }
-
-    .letter-preview-text {
-        @apply font-text text-sm leading-relaxed text-fg-secondary whitespace-pre-line;
-    }
-
     .letter-preview-error {
         @apply font-text text-sm text-fg-error;
-    }
-
-    .letter-preview-placeholder {
-        @apply font-text text-sm text-fg-muted;
-    }
-
-    .letter-preview-footer {
-        @apply flex justify-end pt-4;
     }
 }

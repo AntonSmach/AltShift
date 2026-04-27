@@ -151,9 +151,7 @@ const GeneratorPage: FC = () => {
                 </div>
 
                 <div className='generator-preview-col'>
-                    <div className='generator-preview-box'>
-                        <LetterPreview status={status} isCompleted={isCompleted} onCopy={handleCopy} />
-                    </div>
+                    <LetterPreview status={status} isCompleted={isCompleted} onCopy={handleCopy} />
                 </div>
             </div>
 
