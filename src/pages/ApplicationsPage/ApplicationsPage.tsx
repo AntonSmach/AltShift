@@ -1,14 +1,17 @@
 import {FC, useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
-import ApplicationCard from '@components/ApplicationCard/ApplicationCard';
+import Card from '@components/Card/Card';
 import GoalBanner from '@components/GoalBanner/GoalBanner';
 import Button from '@components/Button/Button';
+import IconButton from '@components/IconButton/IconButton';
 import {useApplications} from '@context/applications/useApplications';
+import {useClipboard} from '@hooks/useClipboard';
 import './ApplicationsPage.css';
 
 const ApplicationsPage: FC = () => {
     const {applications, deleteApplication, goalReached, goal} = useApplications();
     const navigate = useNavigate();
+    const {copy} = useClipboard();
 
     const handleCreateNew = useCallback(() => navigate('/generator'), [navigate]);
 
@@ -32,7 +35,20 @@ const ApplicationsPage: FC = () => {
                 <div className='applications-list'>
                     <div className='applications-grid'>
                         {applications.map((app) => (
-                            <ApplicationCard key={app.id} application={app} onDelete={deleteApplication} />
+                            <Card key={app.id} content={app.generatedLetter}>
+                                <IconButton
+                                    startIcon='icon-trash'
+                                    label='Delete'
+                                    onClick={() => deleteApplication(app.id)}
+                                    className='application-card-delete-btn'
+                                />
+                                <IconButton
+                                    endIcon='icon-copy'
+                                    label='Copy to clipboard'
+                                    onClick={() => copy(app.generatedLetter)}
+                                    className='copy-btn'
+                                />
+                            </Card>
                         ))}
                     </div>
                     {!goalReached && (

@@ -1,6 +1,5 @@
 import {FC, memo} from 'react';
 import IconButton from '@components/IconButton/IconButton';
-import {cn} from '@utils/cn';
 import {GeneratorState} from '@models/enums/generator-state.enum';
 import {GeneratorStatus} from '@pages/GeneratorPage/types/generator.types';
 import './LetterPreview.css';
@@ -8,12 +7,11 @@ import PulseLoader from '@components/PulseLoader/PulseLoader.tsx';
 
 interface ILetterPreviewProps {
     status: GeneratorStatus;
-    copied: boolean;
     isCompleted: boolean;
     onCopy: () => void;
 }
 
-const LetterPreview: FC<ILetterPreviewProps> = memo(({status, copied, isCompleted, onCopy}) => {
+const LetterPreview: FC<ILetterPreviewProps> = memo(({status, isCompleted, onCopy}) => {
     const renderContent = () => {
         if (status.phase === GeneratorState.GENERATING) {
             return <PulseLoader />;
@@ -32,12 +30,7 @@ const LetterPreview: FC<ILetterPreviewProps> = memo(({status, copied, isComplete
             <div className='letter-preview-content'>{renderContent()}</div>
             {isCompleted && (
                 <div className='letter-preview-footer'>
-                    <IconButton
-                        startIcon={copied ? 'icon-check' : 'icon-copy'}
-                        label={copied ? 'Copied!' : 'Copy to clipboard'}
-                        onClick={onCopy}
-                        className={cn('copy-btn', copied && 'copy-btn--copied')}
-                    />
+                    <IconButton startIcon='icon-copy' label='Copy to clipboard' onClick={onCopy} className='copy-btn' />
                 </div>
             )}
         </div>

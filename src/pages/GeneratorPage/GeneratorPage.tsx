@@ -24,7 +24,7 @@ interface IForm {
 
 const GeneratorPage: FC = () => {
     const {addApplication, deleteApplication, applications, goal, goalReached} = useApplications();
-    const {copy, copied} = useClipboard();
+    const {copy} = useClipboard();
 
     const [status, setStatus] = useState<GeneratorStatus>({phase: GeneratorState.IDLE});
     const lastSavedIdRef = useRef<string | null>(null);
@@ -144,7 +144,7 @@ const GeneratorPage: FC = () => {
 
                 <div className='generator-preview-col'>
                     <div className='generator-preview-box'>
-                        <LetterPreview status={status} copied={copied} isCompleted={isCompleted} onCopy={handleCopy} />
+                        <LetterPreview status={status} isCompleted={isCompleted} onCopy={handleCopy} />
                     </div>
                 </div>
             </div>
