@@ -8,10 +8,9 @@ import LetterPreview from '@pages/GeneratorPage/components/LetterPreview/LetterP
 import {useApplications} from '@context/applications/useApplications';
 import {useClipboard} from '@hooks/useClipboard';
 import {cn} from '@utils/cn.ts';
-import {GeneratorState} from '@models/enums/generator-state.enum';
-import {GeneratorStatus} from '@pages/GeneratorPage/types/generator.types.ts';
 import {generateLetter} from '@pages/GeneratorPage/helpers/generate-letter.ts';
 import './GeneratorPage.css';
+import {GeneratorState} from '@models/enums/generator-state.enum.ts';
 
 const MAX_CHARS = 1200;
 
@@ -22,12 +21,22 @@ interface IForm {
     additionalDetails: string;
 }
 
+interface IGeneratorState {
+    state: GeneratorState;
+    value?: string;
+}
+
+const defaultGeneratorState: IGeneratorState = {
+    state: GeneratorState.IDLE,
+    value: 'Your personalized job application will appear here...',
+};
+
 const GeneratorPage: FC = () => {
     const {addApplication, deleteApplication, applications, goal, goalReached} = useApplications();
     const {copy} = useClipboard();
 
-    const [status, setStatus] = useState<GeneratorStatus>({phase: GeneratorState.IDLE});
-    const lastSavedIdRef = useRef<string | null>(null);
+    const [generatorState, setGeneratorState] = useState<IGeneratorState>(defaultGeneratorState);
+    const lastSavedApplicationIdRef = useRef<string | null>(null);
 
     const {
         register,
@@ -42,38 +51,36 @@ const GeneratorPage: FC = () => {
 
     const [jobTitle, company, additionalDetails] = watch(['jobTitle', 'company', 'additionalDetails']);
 
-    const isCompleted = status.phase === GeneratorState.COMPLETED || status.phase === GeneratorState.ERROR;
-    const isGenerating = status.phase === GeneratorState.GENERATING;
+    const isCompleted = generatorState.state === GeneratorState.COMPLETED;
+    const isGenerating = generatorState.state === GeneratorState.GENERATING;
 
     const pageTitle = jobTitle && company ? `${jobTitle}, ${company}` : jobTitle || company || 'New application';
 
     const onSubmit = async (data: IForm) => {
-        setStatus({phase: GeneratorState.GENERATING});
+        setGeneratorState({state: GeneratorState.GENERATING});
 
         try {
             const letter = await generateLetter(data);
             const id = crypto.randomUUID();
-            lastSavedIdRef.current = id;
+            lastSavedApplicationIdRef.current = id;
             addApplication({...data, id, generatedLetter: letter});
-            setStatus({phase: GeneratorState.COMPLETED, letter});
+            setGeneratorState({state: GeneratorState.COMPLETED, value: letter});
         } catch {
-            setStatus({phase: GeneratorState.ERROR, message: 'Something went wrong. Please try again.'});
+            setGeneratorState({state: GeneratorState.ERROR, value: 'Something went wrong. Please try again.'});
         }
     };
 
     const handleTryAgain = () => {
-        if (!lastSavedIdRef.current) return;
-        deleteApplication(lastSavedIdRef.current);
-        lastSavedIdRef.current = null;
+        if (!lastSavedApplicationIdRef.current) return;
+        deleteApplication(lastSavedApplicationIdRef.current);
+        lastSavedApplicationIdRef.current = null;
         reset();
-        setStatus({phase: GeneratorState.IDLE});
+        setGeneratorState(defaultGeneratorState);
     };
 
     const handleCopy = useCallback(() => {
-        if (status.phase === GeneratorState.COMPLETED) {
-            copy(status.letter);
-        }
-    }, [copy, status]);
+        generatorState?.value && copy(generatorState.value);
+    }, [copy, generatorState]);
 
     return (
         <div className='generator-page'>
@@ -151,7 +158,12 @@ const GeneratorPage: FC = () => {
                 </div>
 
                 <div className='generator-preview-col'>
-                    <LetterPreview status={status} isCompleted={isCompleted} onCopy={handleCopy} />
+                    <LetterPreview
+                        value={generatorState?.value || ''}
+                        isError={generatorState.state === GeneratorState.ERROR}
+                        isCompleted={isCompleted}
+                        onCopy={handleCopy}
+                    />
                 </div>
             </div>
 
