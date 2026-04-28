@@ -30,8 +30,8 @@ const LetterPreview: FC<ILetterPreviewProps> = memo(({value, isCompleted, isErro
     };
 
     return (
-        <Card actions={letterContent()} size='full' showFade={false} className='rounded-2xl'>
-            {letterActions()}
+        <Card actions={letterActions()} size='full' showFade={false} className='rounded-2xl'>
+            {letterContent()}
         </Card>
     );
 });
