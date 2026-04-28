@@ -12,13 +12,13 @@ interface ILetterPreviewProps {
 }
 
 const LetterPreview: FC<ILetterPreviewProps> = memo(({value, isCompleted, isError, onCopy}) => {
-    const renderContent = () => {
-        if (!value) return <PulseLoader />;
+    const letterContent = () => {
         if (isError) return <span className='letter-preview-error'>{value}</span>;
+        if (!value) return <PulseLoader />;
         return value;
     };
 
-    const renderActions = () => {
+    const letterActions = () => {
         if (isCompleted) {
             return (
                 <>
@@ -30,8 +30,8 @@ const LetterPreview: FC<ILetterPreviewProps> = memo(({value, isCompleted, isErro
     };
 
     return (
-        <Card content={renderContent()} size='full' showFade={false} className='rounded-2xl'>
-            {renderActions()}
+        <Card actions={letterContent()} size='full' showFade={false} className='rounded-2xl'>
+            {letterActions()}
         </Card>
     );
 });

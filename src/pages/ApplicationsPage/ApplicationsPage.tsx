@@ -35,6 +35,23 @@ const ApplicationsPage: FC = () => {
         }
     };
 
+    const cardActions = () => (
+        <>
+            <IconButton
+                startIcon='icon-trash'
+                label='Delete'
+                onClick={(e) => handleCardAction(e, CardAction.DELETE)}
+                className='card-delete-btn'
+            />
+            <IconButton
+                endIcon='icon-copy'
+                label='Copy to clipboard'
+                onClick={(e) => handleCardAction(e, CardAction.COPY)}
+                className='copy-btn'
+            />
+        </>
+    );
+
     return (
         <div className='applications-page'>
             <div className='applications-header'>
@@ -55,19 +72,8 @@ const ApplicationsPage: FC = () => {
                 <div className='applications-list'>
                     <div className='applications-grid'>
                         {applications.map((app) => (
-                            <Card key={app.id} size='sm' data-id={app.id} content={app.generatedLetter}>
-                                <IconButton
-                                    startIcon='icon-trash'
-                                    label='Delete'
-                                    onClick={(e) => handleCardAction(e, CardAction.DELETE)}
-                                    className='card-delete-btn'
-                                />
-                                <IconButton
-                                    endIcon='icon-copy'
-                                    label='Copy to clipboard'
-                                    onClick={(e) => handleCardAction(e, CardAction.COPY)}
-                                    className='copy-btn'
-                                />
+                            <Card key={app.id} size='sm' data-id={app.id} actions={cardActions()}>
+                                {app.generatedLetter}
                             </Card>
                         ))}
                     </div>
