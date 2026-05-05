@@ -1,5 +1,5 @@
 import {forwardRef, TextareaHTMLAttributes, useId} from 'react';
-import {cn} from '@utils/cn';
+import classNames from 'classnames';
 import './FormTextarea.css';
 
 export interface IFormTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -23,12 +23,13 @@ const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
                 <textarea
                     ref={ref}
                     id={inputId}
-                    className={cn('form-textarea', hasError && 'form-textarea--error')}
+                    className={classNames('form-textarea', hasError && 'form-textarea--error')}
                     {...props}
                 />
                 <div className='form-textarea-footer'>
                     {maxLength !== undefined && (
-                        <span className={cn('form-textarea-counter', hasError && 'form-textarea-counter--error')}>
+                        <span
+                            className={classNames('form-textarea-counter', hasError && 'form-textarea-counter--error')}>
                             {currentLength}/{maxLength}
                         </span>
                     )}

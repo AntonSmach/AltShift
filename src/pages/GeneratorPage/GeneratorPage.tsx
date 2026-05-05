@@ -7,10 +7,10 @@ import GoalBanner from '@components/GoalBanner/GoalBanner';
 import LetterPreview from '@pages/GeneratorPage/components/LetterPreview/LetterPreview';
 import {useApplications} from '@context/applications/useApplications';
 import {useClipboard} from '@hooks/useClipboard';
-import {cn} from '@utils/cn.ts';
 import {generateLetter} from '@pages/GeneratorPage/helpers/generate-letter.ts';
 import './GeneratorPage.css';
 import {GeneratorState} from '@models/enums/generator-state.enum.ts';
+import classNames from 'classnames';
 
 const MAX_CHARS = 1200;
 
@@ -87,7 +87,7 @@ const GeneratorPage: FC = () => {
             <div className='generator-layout'>
                 <div>
                     <h1
-                        className={cn(
+                        className={classNames(
                             'generator-title',
                             !jobTitle && !company && 'generator-title--placeholder',
                             'mb-3',

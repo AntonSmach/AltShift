@@ -1,5 +1,5 @@
 import {forwardRef, InputHTMLAttributes, useId} from 'react';
-import {cn} from '@utils/cn';
+import classNames from 'classnames';
 import './FormInput.css';
 
 export interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -22,7 +22,7 @@ const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
                 <input
                     ref={ref}
                     id={inputId}
-                    className={cn('form-input', hasError && 'form-input--error')}
+                    className={classNames('form-input', hasError && 'form-input--error')}
                     {...props}
                 />
                 <div className='form-input-hint'>

@@ -1,6 +1,6 @@
 import {ButtonHTMLAttributes, forwardRef} from 'react';
 import Spinner from '@components/Spinner/Spinner';
-import {cn} from '@utils/cn';
+import classNames from 'classnames';
 import './Button.css';
 
 export type IButtonVariant = 'primary' | 'secondary' | 'ghost';
@@ -43,7 +43,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
             <button
                 ref={ref}
                 disabled={isDisabled}
-                className={cn(
+                className={classNames(
                     'btn',
                     sizeClass[size],
                     fullWidth && 'btn--full',

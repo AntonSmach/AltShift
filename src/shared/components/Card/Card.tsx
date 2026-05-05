@@ -1,5 +1,5 @@
 import {FC, HTMLAttributes, memo, ReactNode} from 'react';
-import {cn} from '@utils/cn';
+import classNames from 'classnames';
 import './Card.css';
 
 type ICardSize = 'sm' | 'full';
@@ -16,8 +16,8 @@ const sizeClass: Record<ICardSize, string> = {
 };
 
 const Card: FC<ICardProps> = memo(({actions, children, size, showFade = true, className, ...props}) => (
-    <div className={cn('card', size && sizeClass[size], className)} {...props}>
-        <div className={cn('card-preview', showFade && 'card-preview--fade')}>
+    <div className={classNames('card', size && sizeClass[size], className)} {...props}>
+        <div className={classNames('card-preview', showFade && 'card-preview--fade')}>
             <div className='card-text'>{children}</div>
             {showFade && <div className='card-fade' />}
         </div>

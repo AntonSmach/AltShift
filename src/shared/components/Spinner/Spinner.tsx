@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {cn} from '@utils/cn';
+import classNames from 'classnames';
 
 interface ISpinnerProps {
     className?: string;
@@ -7,7 +7,7 @@ interface ISpinnerProps {
 }
 
 const Spinner: FC<ISpinnerProps> = ({className, size = 20}) => (
-    <i className={cn('icon-spinner animate-spin', className)} style={{fontSize: size}} />
+    <i className={classNames('icon-spinner animate-spin', className)} style={{fontSize: size}} />
 );
 
 export default Spinner;

@@ -1,5 +1,5 @@
 import {ButtonHTMLAttributes, forwardRef} from 'react';
-import {cn} from '@utils/cn';
+import classNames from 'classnames';
 import './IconButton.css';
 
 export interface IIconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,10 +10,10 @@ export interface IIconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement
 
 const IconButton = forwardRef<HTMLButtonElement, IIconButtonProps>(
     ({label, startIcon, endIcon, className, ...props}, ref) => (
-        <button ref={ref} type='button' className={cn('icon-btn', className)} {...props}>
-            {startIcon && <i className={cn(startIcon, 'icon-btn-icon')} />}
+        <button ref={ref} type='button' className={classNames('icon-btn', className)} {...props}>
+            {startIcon && <i className={classNames(startIcon, 'icon-btn-icon')} />}
             {label}
-            {endIcon && <i className={cn(endIcon, 'icon-btn-icon')} />}
+            {endIcon && <i className={classNames(endIcon, 'icon-btn-icon')} />}
         </button>
     ),
 );
