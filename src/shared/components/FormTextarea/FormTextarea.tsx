@@ -23,13 +23,13 @@ const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
                 <textarea
                     ref={ref}
                     id={inputId}
-                    className={classNames('form-textarea', hasError && 'form-textarea--error')}
+                    className={classNames('form-textarea', {'form-textarea--error': hasError})}
                     {...props}
                 />
                 <div className='form-textarea-footer'>
                     {maxLength !== undefined && (
                         <span
-                            className={classNames('form-textarea-counter', hasError && 'form-textarea-counter--error')}>
+                            className={classNames('form-textarea-counter', {'form-textarea-counter--error': hasError})}>
                             {currentLength}/{maxLength}
                         </span>
                     )}

@@ -17,7 +17,7 @@ const sizeClass: Record<ICardSize, string> = {
 
 const Card: FC<ICardProps> = memo(({actions, children, size, showFade = true, className, ...props}) => (
     <div className={classNames('card', size && sizeClass[size], className)} {...props}>
-        <div className={classNames('card-preview', showFade && 'card-preview--fade')}>
+        <div className={classNames('card-preview', {'card-preview--fade': showFade})}>
             <div className='card-text'>{children}</div>
             {showFade && <div className='card-fade' />}
         </div>

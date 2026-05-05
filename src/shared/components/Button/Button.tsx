@@ -46,8 +46,12 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
                 className={classNames(
                     'btn',
                     sizeClass[size],
-                    fullWidth && 'btn--full',
-                    loading ? 'btn--loading' : isDisabled ? variantDisabledClass[variant] : variantClass[variant],
+                    {
+                        'btn--full': fullWidth,
+                        'btn--loading': loading,
+                        [variantDisabledClass[variant]]: !loading && isDisabled,
+                        [variantClass[variant]]: !loading && !isDisabled,
+                    },
                     className,
                 )}
                 {...props}>

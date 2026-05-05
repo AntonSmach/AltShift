@@ -15,8 +15,8 @@ const ProgressDots: FC<IProgressDotsProps> = ({current, total, variant = 'bar', 
                 key={i}
                 className={classNames(
                     'rounded-full transition-colors duration-300',
-                    variant === 'bar' ? 'h-2 w-8' : 'h-2 w-2',
-                    i < current ? 'bg-fg-primary' : 'bg-stroke',
+                    {'h-2 w-8': variant === 'bar', 'h-2 w-2': variant !== 'bar'},
+                    {'bg-fg-primary': i < current, 'bg-stroke': i >= current},
                 )}
             />
         ))}

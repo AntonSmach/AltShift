@@ -22,7 +22,7 @@ const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
                 <input
                     ref={ref}
                     id={inputId}
-                    className={classNames('form-input', hasError && 'form-input--error')}
+                    className={classNames('form-input', {'form-input--error': hasError})}
                     {...props}
                 />
                 <div className='form-input-hint'>
