@@ -160,8 +160,7 @@ const GeneratorPage: FC = () => {
                 <div className='generator-preview-col'>
                     <LetterPreview
                         value={generatorState?.value || ''}
-                        isError={generatorState.state === GeneratorState.ERROR}
-                        isCompleted={isCompleted}
+                        state={generatorState.state}
                         onCopy={handleCopy}
                     />
                 </div>

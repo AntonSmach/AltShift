@@ -21,7 +21,7 @@ const Card: FC<ICardProps> = memo(({actions, children, size, showFade = true, cl
             <div className='card-text'>{children}</div>
             {showFade && <div className='card-fade' />}
         </div>
-        {children && <div className='card-footer'>{actions}</div>}
+        {actions && <div className='card-footer'>{actions}</div>}
     </div>
 ));
 

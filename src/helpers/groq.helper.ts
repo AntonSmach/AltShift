@@ -19,14 +19,18 @@ interface IStreamCompletionParams {
     model?: string;
 }
 
-export async function streamCompletion({
-    prompt,
-    model = DEFAULT_MODEL,
-}: IStreamCompletionParams): Promise<string | null> {
+export async function streamCompletion({prompt, model = DEFAULT_MODEL}: IStreamCompletionParams): Promise<string> {
+    let result: string | null = '';
     const stream = client.chat.completions.stream({
         model,
         messages: [{role: 'user', content: prompt}],
     });
 
-    return stream.finalContent();
+    try {
+        result = await stream.finalContent();
+    } catch (error) {
+        console.error('Something went wrong:', error);
+    }
+
+    return result || '';
 }

@@ -3,23 +3,23 @@ import IconButton from '@components/IconButton/IconButton';
 import Card from '@components/Card/Card';
 import PulseLoader from '@components/PulseLoader/PulseLoader';
 import './LetterPreview.css';
+import {GeneratorState} from '@models/enums/generator-state.enum.ts';
 
 interface ILetterPreviewProps {
     value: string;
-    isError: boolean;
-    isCompleted: boolean;
+    state: GeneratorState;
     onCopy: () => void;
 }
 
-const LetterPreview: FC<ILetterPreviewProps> = memo(({value, isCompleted, isError, onCopy}) => {
+const LetterPreview: FC<ILetterPreviewProps> = memo(({value, state, onCopy}) => {
     const letterContent = () => {
-        if (isError) return <span className='letter-preview-error'>{value}</span>;
-        if (!value) return <PulseLoader />;
+        if (state === GeneratorState.GENERATING) return <PulseLoader />;
+        if (state === GeneratorState.ERROR) return <span className='letter-preview-error'>{value}</span>;
         return value;
     };
 
     const letterActions = () => {
-        if (isCompleted) {
+        if (state === GeneratorState.COMPLETED) {
             return (
                 <>
                     <div />
