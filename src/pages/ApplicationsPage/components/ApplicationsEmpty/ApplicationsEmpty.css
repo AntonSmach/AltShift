@@ -1,0 +1,7 @@
+@reference "@styles/theme.css";
+
+@layer components {
+    .applications-empty {
+        @apply mt-8;
+    }
+}

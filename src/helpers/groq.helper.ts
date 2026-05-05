@@ -19,18 +19,14 @@ interface IStreamCompletionParams {
     model?: string;
 }
 
-export async function streamCompletion({prompt, model = DEFAULT_MODEL}: IStreamCompletionParams): Promise<string> {
-    const stream = await client.chat.completions.create({
+export async function streamCompletion({
+    prompt,
+    model = DEFAULT_MODEL,
+}: IStreamCompletionParams): Promise<string | null> {
+    const stream = client.chat.completions.stream({
         model,
-        stream: true,
         messages: [{role: 'user', content: prompt}],
     });
 
-    let result = '';
-
-    for await (const chunk of stream) {
-        result += chunk.choices[0]?.delta?.content ?? '';
-    }
-
-    return result;
+    return stream.finalContent();
 }

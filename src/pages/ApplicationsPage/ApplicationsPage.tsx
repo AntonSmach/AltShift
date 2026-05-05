@@ -1,17 +1,12 @@
 import {FC, MouseEvent, useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
-import Card from '@components/Card/Card';
-import GoalBanner from '@components/GoalBanner/GoalBanner';
 import Button from '@components/Button/Button';
-import IconButton from '@components/IconButton/IconButton';
 import {useApplications} from '@context/applications/useApplications';
 import {useClipboard} from '@hooks/useClipboard';
+import ApplicationsEmpty from './components/ApplicationsEmpty/ApplicationsEmpty';
+import ApplicationsList from './components/ApplicationsList/ApplicationsList';
+import {CardAction} from '@pages/ApplicationsPage/enums/card-action.enum';
 import './ApplicationsPage.css';
-
-enum CardAction {
-    DELETE = 'delete',
-    COPY = 'copy',
-}
 
 const ApplicationsPage: FC = () => {
     const {applications, deleteApplication, goalReached, goal} = useApplications();
@@ -20,11 +15,15 @@ const ApplicationsPage: FC = () => {
 
     const handleCreateNew = useCallback(() => navigate('/generator'), [navigate]);
 
-    const handleCardAction = (e: MouseEvent<HTMLButtonElement>, action: CardAction) => {
-        const card = e.currentTarget.closest<HTMLElement>('[data-id]');
+    const handleCardAction = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        const card = target.closest<HTMLElement>('[data-id]');
+        const cardAction = target.closest<HTMLElement>('[data-action]');
 
-        if (!card?.dataset?.id) return;
+        if (!card?.dataset?.id || !cardAction?.dataset.action) return;
+
         const {id} = card.dataset;
+        const {action} = cardAction.dataset;
 
         if (action === CardAction.DELETE) {
             deleteApplication(id);
@@ -35,23 +34,6 @@ const ApplicationsPage: FC = () => {
         }
     };
 
-    const cardActions = () => (
-        <>
-            <IconButton
-                startIcon='icon-trash'
-                label='Delete'
-                onClick={(e) => handleCardAction(e, CardAction.DELETE)}
-                className='card-delete-btn'
-            />
-            <IconButton
-                endIcon='icon-copy'
-                label='Copy to clipboard'
-                onClick={(e) => handleCardAction(e, CardAction.COPY)}
-                className='copy-btn'
-            />
-        </>
-    );
-
     return (
         <div className='applications-page'>
             <div className='applications-header'>
@@ -61,26 +43,18 @@ const ApplicationsPage: FC = () => {
                     <span className='applications-btn-label-short'>New</span>
                 </Button>
             </div>
-
             <div className='applications-divider' />
 
             {applications.length === 0 ? (
-                <div className='applications-empty'>
-                    <GoalBanner current={0} total={goal} onCreateNew={handleCreateNew} />
-                </div>
+                <ApplicationsEmpty goal={goal} onCreateNew={handleCreateNew} />
             ) : (
-                <div className='applications-list'>
-                    <div className='applications-grid'>
-                        {applications.map((app) => (
-                            <Card key={app.id} size='sm' data-id={app.id} actions={cardActions()}>
-                                {app.generatedLetter}
-                            </Card>
-                        ))}
-                    </div>
-                    {!goalReached && (
-                        <GoalBanner current={applications.length} total={goal} onCreateNew={handleCreateNew} />
-                    )}
-                </div>
+                <ApplicationsList
+                    applications={applications}
+                    goal={goal}
+                    goalReached={goalReached}
+                    onCreateNew={handleCreateNew}
+                    onCardAction={handleCardAction}
+                />
             )}
         </div>
     );
