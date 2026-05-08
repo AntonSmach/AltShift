@@ -78,6 +78,12 @@ const GeneratorPage: FC = () => {
         setGeneratorState(defaultGeneratorState);
     };
 
+    const handleCreateNewApp = () => {
+        lastSavedApplicationIdRef.current = null;
+        reset();
+        setGeneratorState(defaultGeneratorState);
+    };
+
     const handleCopy = useCallback(() => {
         generatorState?.value && copy(generatorState.value);
     }, [copy, generatorState]);
@@ -168,7 +174,7 @@ const GeneratorPage: FC = () => {
 
             {isCompleted && !goalReached && (
                 <div className='generator-goal'>
-                    <GoalBanner current={applications.length} total={goal} onCreateNew={handleTryAgain} />
+                    <GoalBanner current={applications.length} total={goal} onCreateNew={handleCreateNewApp} />
                 </div>
             )}
         </div>
